@@ -7,9 +7,8 @@ export default {
     'webpack-hot-middleware/client',
     path.join(__dirname, '/client/app/index.js')],
   output: {
-    path: __dirname,
-    filename: './bundle.js',
-    publicPath: "/"
+    path: '/',
+    publicPath: '/'
   },
   plugins: [
     new webpack.NoErrorsPlugin(),

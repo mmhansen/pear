@@ -1,12 +1,12 @@
 {
-  "name": "full-stack-tutorial",
+  "name": "full-stack-boilerplate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start"       : "nodemon --watch server --exec babel-node -- server/server.js",
-    "build"       : "webpack --config webpack.config.prod.js",
-    "build:server": "webpack --config webpack.config.server.js"
+    "server": "babel-node server/index.js",
+    "start": "nodemon --watch server --exec babel-node -- server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
