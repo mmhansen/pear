@@ -1,7 +1,8 @@
 # HMR-boilerplate
 
-# Use
+## Use
 ```
 npm i
 npm start
 ```
+
