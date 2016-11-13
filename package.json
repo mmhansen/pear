@@ -27,6 +27,8 @@
     "config": "^1.24.0",
     "css-loader": "^0.25.0",
     "express": "^4.14.0",
+    "express-graphql": "^0.6.1",
+    "graphql": "^0.8.1",
     "jwt-simple": "^0.5.0",
     "mongoose": "^4.6.7",
     "mongoose-findorcreate": "^0.1.2",
