@@ -6,6 +6,7 @@ import webpackConfig from '../../webpack.config.js';
 import logger from 'morgan'
 import bodyParser from 'body-parser'
 import passport from 'passport'
+import responses from './responses'
 
 export default function (app) {
   // logger
@@ -25,4 +26,6 @@ export default function (app) {
   app.use(webpackHotMiddleware(compiler))
   // passport
   app.use(passport.initialize());
+  // responses
+  app.use(responses)
 }
