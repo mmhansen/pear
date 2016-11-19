@@ -1,39 +1,30 @@
 import mongoose, { Schema } from 'mongoose'
 
 const project = {
-  title: {
-    type: String
-  },
-  description: {
-    type: String
-  },
-  skills: {
-    type: [String]
-  },
   participants: {
-    type: [String]
+    owner: { type: Schema.Types.ObjectId, ref: 'user' },
+    members: { type: [Schema.Types.ObjectId], ref: 'user' },
+    applicants: { type: [Schema.Types.ObjectId], ref: 'user' }
   },
-  date_start: {
-    type: String
-  },
-  date_complete: {
-    type: String
-  },
-  repo: {
-    type: String
-  },
-  owner: {
-    type: String
-  },
-  mentor: {
-    type: String
+  details: {
+    title: { type: String },
+    repository: { type: String },
+    description: { type: String },
+    tags: { type: [String] },
+    status: { type: String, enum: ['Active', 'Abandoned'], default: 'Active' },
+    options: {
+      lanuage: { type: String },
+      timezone: { type: String },
+      max_members: { type: Number, default: 4 }
+    }
   }
 }
 
-const requiredAttrs = ['title', 'description', 'skills', 'participants', 'date_start', 'owner', 'repo'];
-requiredAttrs.forEach((attr) => {
-  project[attr].required = true;
-})
 
-const projectSchema = new Schema(project)
+// const requiredAttrs = ['title', 'description', 'skills', 'participants', 'date_start', 'owner', 'repo'];
+// requiredAttrs.forEach((attr) => {
+//   project[attr].required = true;
+// })
+
+const projectSchema = new Schema(project, { timestamps: true })
 export default mongoose.model('project', projectSchema)

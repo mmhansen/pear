@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "babel-node server/index.js",
-    "start": "export NODE_ENV=dev && nodemon --watch server --exec babel-node -- server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:server": "nodemon --watch server --exec babel-node -- server/"
   },
   "keywords": [],
   "author": "",
@@ -24,7 +23,6 @@
   },
   "dependencies": {
     "body-parser": "^1.15.2",
-    "config": "^1.24.0",
     "css-loader": "^0.25.0",
     "express": "^4.14.0",
     "express-graphql": "^0.6.1",

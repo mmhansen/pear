@@ -1,9 +1,9 @@
 import passport from 'passport'
 import { extractJwt, Strategy } from 'passport-jwt'
-import config from 'config'
 import GitHubStrategy from 'passport-github2'
 // locals
 import User from '../models/user'
+import config from './config'
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -14,8 +14,8 @@ passport.deserializeUser(function(obj, done) {
 });
 
 const github = new GitHubStrategy({
-  clientID: config.github.id,
-  clientSecret: config.github.secret,
+  clientID: config().github.id,
+  clientSecret: config().github.secret,
   callbackURL: "http://localhost:3000/api/auth/github/callback"
 },
 function(accessToken, refreshToken, profile, done) {
