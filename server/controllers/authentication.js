@@ -8,8 +8,9 @@ const makeToken = (id) => {
 }
 
 export function login (req, res, next) {
-  let { _id, githubId } = req.user;
+  let { _id } = req.user;
+
   res.okay({
-    token: makeToken(githubId)
+    token: makeToken(_id)
   })
 }

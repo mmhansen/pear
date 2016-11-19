@@ -2,12 +2,10 @@ import mongoose, { Schema } from 'mongoose'
 var findOrCreate = require('mongoose-findorcreate')
 
 const User = new Schema({
-  email: {
-    type: String
-  },
   github: {
-    _id: { type: String },
-    username: { type: String }
+    _id: { type: String, required: true, unique: true },
+    username: { type: String, required: true, unique: true  },
+    url: { type: String }
   },
   communication: {
     timezone: { type: String, default: "0" },
