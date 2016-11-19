@@ -3,7 +3,7 @@ import React from 'react';
 class App extends React.Component {
   render (){
     return(
-      <button><a href="/api/auth/github"> Github </a></button>
+      <button><a href="http://localhost:3000/api/auth/github"> Github </a></button>
     );
   }
 }
