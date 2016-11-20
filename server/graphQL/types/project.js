@@ -10,7 +10,7 @@ export default new GraphQLObjectType({
   name: 'Project',
   fields: {
     _id: {
-      type: GraphQLString
+      type: GraphQLID
     },
     participants: {
       type: Participants

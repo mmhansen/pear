@@ -1,7 +1,8 @@
 import {
   GraphQLInputObjectType,
   GraphQLString,
-  GraphQLInt
+  GraphQLInt,
+  GraphQLNonNull
 } from 'graphql'
 
 export default new GraphQLInputObjectType({
@@ -9,13 +10,13 @@ export default new GraphQLInputObjectType({
   description: 'project option input',
   fields: {
     language: {
-      type: GraphQLString
+      type:  new GraphQLNonNull(GraphQLString)
     },
     timezone: {
-      type: GraphQLString
+      type:  new GraphQLNonNull(GraphQLString)
     },
     max_members: {
-      type: GraphQLInt
+      type:  new GraphQLNonNull(GraphQLInt)
     }
   }
 })

@@ -22,13 +22,13 @@ export default new GraphQLInputObjectType({
       type: new GraphQLNonNull(new GraphQLList(GraphQLString))
     },
     status: {
-      type: GraphQLString
+      type: new GraphQLNonNull(GraphQLString)
     },
     repository: {
-      type: GraphQLString
+      type: new GraphQLNonNull(GraphQLString)
     },
     options: {
-      type: OptionsType
+      type: new GraphQLNonNull(OptionsType)
     }
   }
 })
