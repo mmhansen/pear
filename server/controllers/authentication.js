@@ -11,6 +11,7 @@ export function login (req, res, next) {
   let { _id } = req.user;
 
   res.okay({
-    token: makeToken(_id)
+    token: makeToken(_id),
+    _id
   })
 }

@@ -6,8 +6,7 @@ import graphqlHTTP from 'express-graphql'
 //locals
 import errorHandler from './controllers/errors'
 import { login } from './controllers/authentication'
-import { schema } from './graphQL/schema'
-import { root } from './graphQL/root'
+import schema from './graphQL/'
 //
 export default function (app) {
   const apiRoutes = Router()
@@ -26,13 +25,13 @@ export default function (app) {
    */
    apiRoutes.use('/graphql', graphqlHTTP({
     schema: schema,
-    rootValue: root,
     graphiql: true,
+    pretty: true
   }));
   //
   app.use('/api', apiRoutes)
   /*
    * Error handler
    */
-  app.use(errorHandler)
+  app.get('/*', (req, res) => res.json({ error: 'you probably meant /api/graphql'}))
 }

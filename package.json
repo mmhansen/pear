@@ -30,6 +30,7 @@
     "webpack-validator": "^2.2.9"
   },
   "dependencies": {
+    "babel-preset-stage-0": "^6.16.0",
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
     "css-loader": "^0.25.0",

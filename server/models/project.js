@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 
 const project = {
+  _id: { type: String },
   participants: {
     owner: { type: Schema.Types.ObjectId, ref: 'user' },
     members: { type: [Schema.Types.ObjectId], ref: 'user' },
@@ -13,7 +14,7 @@ const project = {
     tags: { type: [String] },
     status: { type: String, enum: ['Active', 'Abandoned'], default: 'Active' },
     options: {
-      lanuage: { type: String },
+      language: { type: String },
       timezone: { type: String },
       max_members: { type: Number, default: 4 }
     }

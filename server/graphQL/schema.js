@@ -2,20 +2,9 @@ import {
   buildSchema
 } from 'graphql';
 
-const projectArgs = `
-  owner: String!,
-  title: String!,
-  description: String!,
-  tags: [String]!,
-  timezone: String,
-  language: String,
-  status: String,
-  max_members: Int,
-  repository: String
-  `;
-
 const ProjectSchema = `
   type Project {
+    _id: String
     participants: Participants
     details: Details
   }
@@ -29,6 +18,7 @@ const ProjectSchema = `
     repository: String
     description: String
     tags: [String]
+    status: String
     options: Options
   }
   type Options {
@@ -48,19 +38,51 @@ const MailSchema = ``
 const UserSchema = `
   type User {
     _id: String
-    email: String
     username: String
     communication: Communication
     Projects: Project
   }
   type Communication {
     timezone: String
-    lanuage: String
+    language: String
   }
 `
+
+const projectArgs = `
+  owner: String!,
+  title: String!,
+  description: String!,
+  tags: [String]!,
+  timezone: String,
+  language: String,
+  status: String,
+  max_members: Int,
+  repository: String
+  `;
+
 const mutation = `
+  input participantInput {
+    owner: String!
+  }
+  input projectDetailInput {
+    title: String!
+    description: String!
+    tags: [String]!
+    repository: String
+    status: String
+    options: projectOptionInput
+  }
+  input projectOptionInput {
+    max_members: Int
+    language: String
+    timezone: String
+  }
+  input ProjectInput {
+    participants: participantInput
+    details: projectDetailInput
+  }
   type Mutation {
-    project(id: String!, ${projectArgs}): Project
+    project(id: String!, project: ProjectInput ): Project
     members(projectId: String!, owner: String!): Members
   }
 `
@@ -70,6 +92,7 @@ const query = `
     activeProjects: [Project]
     me(id: String!): User
     tags: [String]
+    id: String
   }
 `
 export const schema = new buildSchema(`
