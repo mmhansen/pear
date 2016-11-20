@@ -1,19 +1,19 @@
 import {
-  GraphQLLIst
+  GraphQLList
 } from 'graphql'
 
-import getProjection from '../../get_projection'
 import ProjectModel from '../../../models/project'
+import getProjection from '../../get_projection'
 import projectType from '../../types/project'
 
 export default {
-  type: projectType,
+  type: new GraphQLList(projectType),
   resolve (root, params, options) {
     //const projection = getProjection(options.fieldASTs[0])
 
     return ProjectModel
       .find({ 'details.status': 'Active' })
-      .populate('user')
+      .populate('participants.owner')
       .exec();
   }
 }

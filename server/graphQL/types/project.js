@@ -1,8 +1,7 @@
 import {
   GraphQLObjectType,
-  graphQLNonNull,
-  GraphQLString,
-  GraphQLID
+  GraphQLID,
+  GraphQLString
 } from 'graphql'
 import Participants from './participants'
 import Details from './details'
