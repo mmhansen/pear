@@ -1,5 +1,11 @@
 import mongoose, { Schema } from 'mongoose'
 
+/*
+ * Define the project schema as two parts.
+ * First is the participants
+ * Second is the details of the project
+ * This will allow us to expand the complexity of either without collision of names or too much confusion from 1d objects
+ */
 const project = {
   participants: {
     owner: { type: Schema.Types.ObjectId, ref: 'user' },

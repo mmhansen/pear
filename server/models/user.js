@@ -1,6 +1,9 @@
 import mongoose, { Schema } from 'mongoose'
 var findOrCreate = require('mongoose-findorcreate')
-
+/*
+ * The users consists of information from github,
+ * there is also a communication preference for later improved matching of individuals
+ */
 const User = new Schema({
   github: {
     _id: { type: String, required: true, unique: true },
