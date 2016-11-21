@@ -4,7 +4,11 @@ import {
 } from 'graphql'
 
 import UserModel from '../../../models/user'
+import ProjectModel from '../../../models/project'
 import UserType from '../../types/user'
+import findProject from '../../libs/project_query'
+
+var ObjectId = require('mongoose').Types.ObjectId;
 
 export default {
   name: 'me',
@@ -16,9 +20,14 @@ export default {
       type: new GraphQLNonNull(GraphQLID)
     }
   },
-  resolve (root, params, options) {
-    return UserModel
-      .findById(params.id)
-      .exec()
+  async resolve (root, params, options) {
+    const User = await UserModel.findById(params.id).exec()
+    const projectOwner = await findProject({ 'participants.owner': new ObjectId(params.id) })
+    const projectMember = await findProject({ 'participants.members': new ObjectId(params.id) })
+    const projectApplicant = await findProject({ 'participants.applicants': new ObjectId(params.id) })
+
+
+    let me = Object.assign({}, {user: User}, { projects: [...projectOwner, ...projectMember, ...projectApplicant] })
+    return me
   }
 }

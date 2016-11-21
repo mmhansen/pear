@@ -3,7 +3,9 @@ import {
   GraphQLString,
   GraphQLList
 } from 'graphql'
+
 import Options from './options'
+import ProjectStatus from './status_enum'
 
 export default new GraphQLObjectType({
   name: 'Details',
@@ -22,7 +24,7 @@ export default new GraphQLObjectType({
       type: new GraphQLList(GraphQLString)
     },
     status: {
-      type: GraphQLString
+      type: ProjectStatus
     },
     options: {
       type: Options

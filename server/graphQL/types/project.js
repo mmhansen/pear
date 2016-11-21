@@ -1,14 +1,14 @@
 import {
   GraphQLObjectType,
-  GraphQLID,
-  GraphQLString
+  GraphQLID
 } from 'graphql'
+
 import Participants from './participants'
 import Details from './details'
 
 export default new GraphQLObjectType({
   name: 'Project',
-  fields: {
+  fields: () => ({
     _id: {
       type: GraphQLID
     },
@@ -18,5 +18,5 @@ export default new GraphQLObjectType({
     details: {
       type: Details
     }
-  }
+  })
 })

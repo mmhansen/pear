@@ -1,33 +1,42 @@
 import {
   GraphQLID,
   GraphQLObjectType,
-  GraphQLString
+  GraphQLString,
+  GraphQLList
 } from 'graphql'
+
+import Project from './project'
 
 export default new GraphQLObjectType({
   name: 'User',
   description: 'user details',
-  fields: {
+  fields: () => ({
     _id: {
-      type: GraphQLID
+      type: GraphQLID,
+      resolve: (data) => {
+        return data.user._id
+      }
     },
     username: {
       type: GraphQLString,
-      resolve: (person) => {
-        return person.github.username
+      resolve: (data) => {
+        return data.user.github.username
       }
     },
     timezone: {
       type: GraphQLString,
-      resolve: (person) => {
-        return person.communication.timezone
+      resolve: (data) => {
+        return data.user.communication.timezone
       }
     },
     lanuage: {
       type: GraphQLString,
-      resolve: (person) => {
-        return person.communication.language
+      resolve: (data) => {
+        return data.user.communication.language
       }
+    },
+    projects: {
+      type: new GraphQLList(Project)
     }
-  }
+  })
 })
