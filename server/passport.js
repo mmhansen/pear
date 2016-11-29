@@ -2,8 +2,8 @@ import passport from 'passport'
 import { extractJwt, Strategy } from 'passport-jwt'
 import GitHubStrategy from 'passport-github2'
 // locals
-import User from '../models/user'
-import config from './config'
+import User from './models/user'
+import * as config from './config'
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -14,9 +14,9 @@ passport.deserializeUser(function(obj, done) {
 });
 
 const github = new GitHubStrategy({
-  clientID: config().github.id,
-  clientSecret: config().github.secret,
-  callbackURL: "http://localhost:3000/api/auth/github/callback"
+  clientID: config.auth.github.id,
+  clientSecret: config.auth.github.secret,
+  callbackURL: "http://localhost:3000/login/github/callback"
 },
 function(accessToken, refreshToken, profile, done) {
   User.findOne({ 'github._id': profile.id }, (err, user) => {
@@ -32,3 +32,5 @@ function(accessToken, refreshToken, profile, done) {
 })
 
 passport.use(github)
+
+export default passport;

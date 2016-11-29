@@ -1,3 +1,15 @@
+# Node Files
 node_modules
+
+# Logs
+*.log*
+
+# Mac trash
 DS_STORE
+
+# Incase you install with yarn
 yarn.lock
+
+# Webpack bundles
+build
+stats.json

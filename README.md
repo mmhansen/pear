@@ -4,14 +4,7 @@
 ```  
 npm i  
 ```  
-## Developing Front End?  
+## Develop
 ```
-npm run dev:client  
+npm run dev
 ```
-go to localhost:8080  
-
-## Developing Back End?  
-```
-npm run dev:server  
-```
-go to localhost:3000/api/graphql  

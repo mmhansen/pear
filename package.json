@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "export NODE_ENV='deveopment' && run-p dev:client dev:server",
     "dev:server": "nodemon --watch server --exec babel-node -- server/",
-    "dev:client": "webpack-dev-server"
+    "dev:client": "webpack -w",
+    "build": "webpack",
+    "start": "export NODE_ENV='production' && nodemon --watch server --exec babel-node -- server/"
   },
   "keywords": [],
   "author": "",
@@ -13,13 +16,12 @@
   "devDependencies": {
     "babel-cli": "^6.16.0",
     "babel-loader": "^6.2.5",
-    "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-0": "^6.16.0",
     "clean-webpack-plugin": "^0.1.14",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.24.1",
     "nodemon": "^1.10.2",
+    "npm-run-all": "^3.1.1",
     "purifycss-webpack-plugin": "^2.0.3",
     "react-hot-loader": "^3.0.0-beta.5",
     "webpack": "^1.13.2",
@@ -27,27 +29,27 @@
     "webpack-dev-server": "^1.16.2",
     "webpack-hot-middleware": "^2.12.2",
     "webpack-merge": "^0.17.0",
-    "webpack-validator": "^2.2.9"
+    "webpack-validator": "^2.2.9",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "css-loader": "^0.25.0",
+    "node-sass": "^3.10.1"
   },
   "dependencies": {
+    "babel-preset-es2015": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "body-parser": "^1.15.2",
-    "cors": "^2.8.1",
-    "css-loader": "^0.25.0",
+    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "express-graphql": "^0.6.1",
+    "express-jwt": "^5.1.0",
     "graphql": "^0.8.1",
-    "jwt-simple": "^0.5.0",
+    "jsonwebtoken": "^7.1.9",
     "mongoose": "^4.6.7",
-    "mongoose-findorcreate": "^0.1.2",
     "morgan": "^1.7.0",
-    "node-sass": "^3.10.1",
     "passport": "^0.3.2",
     "passport-github2": "^0.1.10",
-    "passport-jwt": "^2.2.1",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "sass-loader": "^4.0.2",
-    "style-loader": "^0.13.1"
+    "react-dom": "^15.3.2"
   }
 }
