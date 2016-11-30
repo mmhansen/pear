@@ -1,5 +1,4 @@
 import passport from 'passport'
-import { extractJwt, Strategy } from 'passport-jwt'
 import GitHubStrategy from 'passport-github2'
 // locals
 import User from './models/user'

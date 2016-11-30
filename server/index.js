@@ -43,12 +43,13 @@ if(process.env.NODE_ENV != 'test') {
 /*
  * Add authentication
  */
+// this is decoding the token from the cookie
+app.use(expressJwt({
+  secret: config.auth.jwt.secret,
+  credentialsRequired: false,
+  getToken: req => req.cookies.id_token,
+}));
 
-// app.use(expressJwt({
-//   secret: config.auth.jwt.secret,
-//   credentialsRequired: false,
-//   getToken: req => req.cookies.id_token,
-// }));
 app.use(passport.initialize());
 
 
@@ -59,11 +60,12 @@ if (process.env.NODE_ENV !== 'production') {
 app.get('/login/github',
   passport.authenticate('github', { scope: [ 'user:email' ] }));
 
+
 app.get('/login/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   (req, res) => {
     const expiresIn = 60 * 60 * 24 * 180; // 180 days
-    const token = jwt.sign(req.user._id, config.auth.jwt.secret, { expiresIn });
+    const token = jwt.sign(req.user, config.auth.jwt.secret, { expiresIn });
     res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
     res.redirect('/');
   }
@@ -84,6 +86,7 @@ app.use('/graphql', graphqlHTTP(req => ({
  * Catch other routes and send back index.html
  */
 app.get('/*', (req, res) => {
+  console.log(req.user._doc)
   res.sendFile(path.resolve(__dirname, '../build', 'index.html'))
 })
 

@@ -1,6 +1,7 @@
 import {
   GraphQLNonNull,
-  GraphQLID
+  GraphQLID,
+  GraphQLError
 } from 'graphql'
 
 import UserModel from '../../../models/user'
@@ -10,18 +11,18 @@ import findProject from '../../libs/project_query'
 
 var ObjectId = require('mongoose').Types.ObjectId;
 
+/*
+ * Get the user from the request.user.
+ * A user will be there as long as the request-er is authenticated.
+ */
 export default {
   name: 'me',
   description: 'returns user profile of currently logged in user',
   type: UserType,
-  args: {
-    id: {
-      name: 'user_id',
-      type: new GraphQLNonNull(GraphQLID)
-    }
-  },
   async resolve (root, params, options) {
-    const User = await UserModel.findById(params.id).exec()
+    const id = options.user._doc._id
+    
+    const User = await UserModel.findById(id).exec()
     const projectOwner = await findProject({ 'participants.owner': new ObjectId(params.id) })
     const projectMember = await findProject({ 'participants.members': new ObjectId(params.id) })
     const projectApplicant = await findProject({ 'participants.applicants': new ObjectId(params.id) })
