@@ -1,9 +1,11 @@
 import {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLList
+  GraphQLList,
+  GraphQLInt as IntType
 } from 'graphql'
 
+import moment from 'moment'
 import Options from './options'
 import ProjectStatus from './status_enum'
 
@@ -12,22 +14,37 @@ export default new GraphQLObjectType({
   description: 'Project details',
   fields: {
     title: {
-      type: GraphQLString
+      type: GraphQLString,
+      resolve: ({details}) => details.title
     },
     repository: {
-      type: GraphQLString
+      type: GraphQLString,
+      resolve: ({details}) => details.repository
     },
     description: {
-      type: GraphQLString
+      type: GraphQLString,
+      resolve: ({details}) => details.description
     },
     tags: {
-      type: new GraphQLList(GraphQLString)
+      type: new GraphQLList(GraphQLString),
+      resolve: ({details}) => details.tags
     },
     status: {
-      type: ProjectStatus
+      type: ProjectStatus,
+      resolve: ({details}) => details.status
+    },
+    age: {
+      type: IntType,
+      resolve: (project) => {
+        let age = moment(project.createdAt)
+        let now = moment(new Date())
+
+        return now.diff(age, 'days')
+      }
     },
     options: {
-      type: Options
+      type: Options,
+      resolve: ({details}) => details.options
     }
   }
 })

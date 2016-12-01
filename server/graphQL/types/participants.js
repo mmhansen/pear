@@ -19,7 +19,10 @@ export default new GraphQLObjectType({
       type: new GraphQLList(User)
     },
     count: {
-      type: IntType
+      type: IntType,
+      resolve: (participants) => {
+        return participants.members.length + 1;
+      }
     }
   }
 })

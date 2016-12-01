@@ -16,7 +16,8 @@ export default new GraphQLObjectType({
       type: Participants
     },
     details: {
-      type: Details
+      type: Details,
+      resolve: (project) => project
     }
   })
 })
