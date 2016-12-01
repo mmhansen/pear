@@ -1,6 +1,61 @@
-h1 {
-  color: rgba(0,0,0,0.5);
-}
+
+// Color Palette
+$lapis: rgba(36, 123, 160, 1);
+$green: rgba(112, 193, 179, 1);
+$sea-foam: rgba(178, 219, 191, 1);
+$yellow: rgba(243, 255, 189, 1);
+$red: rgba(255, 22, 84, 1);
+$bg: #F5F5F5;
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+// general
 body {
-  margin: 50px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.navigation {
+  background: $lapis;
+  padding: 12px;
+}
+
+.navigation > a:first-child {
+  margin-right: 12px;
+}
+
+.right {
+  float: right;
+}
+
+.main {
+  margin: 36px;
+}
+
+/*
+ * Project card styling for the main page
+ */
+.project {
+  position: relative;
+  margin: 12px;
+  padding: 12px;
+
+  background: white;
+  border-radius: 6px;
+  border: 2px solid $bg;
+
+  height: 400px;
+}
+.details {
+  height: 85%;
+}
+.bottom {
+  height: 10%;
+}
+.project .title {
+  font-weight: bold;
+  text-transform: uppercase;;
+  font-size: 16px;
+}
+
+.project .stat {
+  font-weight: bold;
 }

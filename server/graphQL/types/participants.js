@@ -1,6 +1,7 @@
 import {
   GraphQLObjectType,
-  GraphQLList
+  GraphQLList,
+  GraphQLInt as IntType
 } from 'graphql'
 import User from './user'
 
@@ -16,6 +17,9 @@ export default new GraphQLObjectType({
     },
     applicants: {
       type: new GraphQLList(User)
+    },
+    count: {
+      type: IntType
     }
   }
 })

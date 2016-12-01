@@ -1,12 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './components/App';
-// hot module reloader throws an error without this
-if (module.hot) {
-  module.hot.accept();
-}
 
+// local import
+import Root from './store'
+
+/*
+ * Render the root node as the store composed with the router;
+ */
 render (
-  <App />,
+  <Root />,
   document.getElementById('app')
 )
