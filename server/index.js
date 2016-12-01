@@ -33,7 +33,7 @@ db.once('open', () => (
 
 app.use(express.static(path.join(__dirname, '../build')));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(responses)
 if(process.env.NODE_ENV != 'test') {
@@ -86,7 +86,6 @@ app.use('/graphql', graphqlHTTP(req => ({
  * Catch other routes and send back index.html
  */
 app.get('/*', (req, res) => {
-  console.log(req.user._doc)
   res.sendFile(path.resolve(__dirname, '../build', 'index.html'))
 })
 

@@ -25,7 +25,7 @@ export default new GraphQLInputObjectType({
       type: new GraphQLNonNull(GraphQLString)
     },
     repository: {
-      type: new GraphQLNonNull(GraphQLString)
+      type: GraphQLString
     },
     options: {
       type: new GraphQLNonNull(OptionsType)

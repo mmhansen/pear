@@ -1,5 +1,7 @@
 import axios from 'axios'
+import { browserHistory } from 'react-router'
 import * as types from './types'
+
 
 
 export function fetchActiveProjects () {
@@ -45,4 +47,51 @@ export function secondarySearch (payload) {
     type: types.SECONDARY_SEARCH,
     payload
   }
+}
+
+export function handleChange (event) {
+  return {
+    type: types.INPUT_CHANGE,
+    payload: event.target.value,
+    name: event.target.name
+  }
+}
+
+
+
+export function newProject ({ title, description, tags, communication, timezone }) {
+
+  const mutation = `mutation {
+    new_project(data: {
+      title: "${title}",
+      description: "${description}",
+      tags: ["Javascript"],
+      status: "Active",
+      options: {
+        language: "English",
+        timezone: "0",
+        max_members: 4
+      }
+    }) {
+      _id
+      details {
+        title
+        description
+        tags
+        options {
+          lanuage
+          timezone
+        }
+      }
+    }
+  }`
+
+  axios.post('/graphql', { query: mutation })
+  .then(({ data }) => {
+    //console.log(data.data)
+    browserHistory.push('/')
+  })
+  .catch(err => {
+    console.log(err)
+  })
 }

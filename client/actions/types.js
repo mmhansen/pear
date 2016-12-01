@@ -15,3 +15,8 @@ export const ACTIVE = 'ACTIVE'
  */
 export const PRIMARY_SEARCH = 'PRIMARY_SEARCH'
 export const SECONDARY_SEARCH = 'SECONDARY_SEARCH'
+
+/*
+ * Form handling types
+ */
+export const INPUT_CHANGE = 'INPUT_CHANGE'
