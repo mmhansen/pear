@@ -125,3 +125,32 @@ export function fetchProjectsById (idArray) {
     })
   }
 }
+
+export function handleTagDelete(i, tags) {
+  tags.splice(i, 1);
+  return  {
+    type: types.DELETE_TAG,
+    payload: tags
+  }
+}
+export function handleTagAddition(tag, tags) {
+  return {
+    type: types.ADD_TAG,
+    payload: {
+      id: tags.length + 1,
+      text: tag
+    }
+  }
+}
+export function handleTagDrag(tag, currPos, newPos, tags) {
+
+  // mutate array
+  tags.splice(currPos, 1);
+  tags.splice(newPos, 0, tag);
+
+  // re-render
+  return  {
+    type: types.DRAG_TAG,
+    payload: tags
+  }
+}

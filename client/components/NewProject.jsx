@@ -1,15 +1,25 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { newProject, handleChange } from '../actions/project_actions'
-
+import * as actions from '../actions/project_actions'
+import { WithContext as ReactTags } from 'react-tag-input';
+import { tagList } from './utils/tag_list'
 
 class NewProject extends Component {
   newProjectSubmit (e) {
     e.preventDefault();
-    newProject(this.props.form)
+    actions.newProject(this.props.form)
+  }
+  handleDelete (i) {
+      this.props.handleTagDelete(i, this.props.tags)
+  }
+  handleAddition(tag) {
+    this.props.handleTagAddition(tag, this.props.tags)
+  }
+  handleDrag(tag, currPos, newPos) {
+    this.props.handleTagDrag(tag, currPos, newPos, this.props.tags)
   }
   render () {
-    let { title, description, tags, timezone, communication } = this.props.form
+    let { tags, form: {title, description, current_tag, timezone, communication} } = this.props
 
     return (
       <div className="container-fluid main">
@@ -27,10 +37,14 @@ class NewProject extends Component {
                 <input value={description} onChange={(e) => {this.props.handleChange(e)}} className="form-control" name="description" placeholder="" type="text" />
             </div>
             {/* tags */}
-            <div className='form-group'>
-                <label className="control-label" htmlFor="text">Tags</label>
-                <input value={tags} onChange={(e) => {this.props.handleChange(e)}} className="form-control" name="tags" placeholder="" type="text" />
-            </div>
+            <ReactTags tags={tags}
+                  suggestions={tagList}
+                  placeholder="Add atleast one tag"
+                  autocomplete={true}
+                  handleDelete={this.handleDelete.bind(this)}
+                  handleAddition={this.handleAddition.bind(this)}
+                  handleDrag={this.handleDrag.bind(this)} />
+
             <div className="preferences">
               <p className="title">Preferences</p>
               {/* timezone */}
@@ -44,7 +58,7 @@ class NewProject extends Component {
                   <input value={communication} onChange={(e) => {this.props.handleChange(e)}} className="form-control" name="communication" placeholder="" type="text" />
               </div>
             </div>
-            <button type="submit" className="btn btn-primary">Create</button>
+            <button type="submit" className="full-width btn btn-primary">Create</button>
             </form>
 
           </div>
@@ -55,16 +69,17 @@ class NewProject extends Component {
 }
 
 const mapStateToProps = (state) => {
-  let { title, description, tags, timezone, communication } = state.form
+  let { tags, title, description, current_tag, timezone, communication } = state.form
     return {
+      tags,
       form: {
         title,
         description,
-        tags,
+        current_tag,
         timezone,
         communication
       }
     }
 }
 
-export default connect(mapStateToProps, { handleChange })(NewProject)
+export default connect(mapStateToProps, actions)(NewProject)
