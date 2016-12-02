@@ -6,28 +6,11 @@ import * as types from './types'
 
 export function fetchActiveProjects () {
   return dispatch => {
-    return axios.post('/graphql', {
-      query: `
-      {
-      	activeProjects {
-          _id
-          participants {
-            count
-          }
-          details {
-            title
-            description
-            tags
-            age
-            options {
-              lanuage
-              timezone
-              max_members
-            }
-          }
-        }
-      }`
-    })
+    let query = `{
+              activeProjects
+            }`
+
+    return axios.post('/graphql', {query})
     .then(({ data }) => {
       dispatch({
         type: types.ACTIVE,
@@ -99,4 +82,46 @@ export function newProject ({ title, description, tags, communication, timezone 
   .catch(err => {
     console.log(err)
   })
+}
+
+
+export function fetchProjectsById (idArray) {
+
+  return dispatch => {
+    let query = `query ($idArray: [ID]){
+      projects_by_ids(ids: $idArray)
+    {
+        _id
+        participants {
+          count
+        }
+        details {
+          title
+          description
+          tags
+          age
+          options {
+            lanuage
+            timezone
+            max_members
+          }
+        }
+      }
+    }`
+
+    let variables = {
+      idArray
+    }
+
+    return axios.post('/graphql', {query, variables})
+    .then(({ data }) => {
+      dispatch({
+        type: types.INSERT_PROJECT,
+        payload: data.data.projects_by_ids
+      })
+    })
+    .catch(err => {
+      return err;
+    })
+  }
 }

@@ -8,6 +8,7 @@ export const UNAUTH_USER = 'UNAUTH_USER'
  * Fetching projects
  */
 export const ACTIVE = 'ACTIVE'
+export const INSERT_PROJECT = 'INSERT_PROJECT'
 
 
 /*

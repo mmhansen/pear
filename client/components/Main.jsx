@@ -6,15 +6,54 @@ import filter2D from './utils/filter2D'
 class Main extends Component {
   componentDidMount () {
     this.props.fetchActiveProjects()
+    .then(() => {
+      this.props.fetchProjectsById(this.props.active)
+    })
   }
+
   render () {
+    let { projects, active, search: { primary, secondary } } = this.props
+    /*
+     * if these ids are not in project state, return the ids that we need to fetch, and fetch them
+     */
+
+     // if Object.keys(projects) contains all the keys in active
+     let projectKeys = Object.keys(projects)
+     let activeProjects = [];
 
 
-    //const subSearch =
-    let { projects, search: { primary, secondary } } = this.props
+     activeProjects = active.map((key) => {
+       return projects[key]
+     })
 
 
-    let childElements = filter2D(projects, primary, secondary).map((a) => {
+    //  function sortNjoin (inputArray) {
+    //    return
+    //  }
+    //  if(projectKeys.sort().join(',') === active.sort().join(',')) {
+    //   // then construct a child elements array by mapping through projects and grabbing the ones that have keys in active
+    //   // give me any project that has a key in active
+    //     activeProjects = active.map((key) => {
+    //       return projects[key]
+    //     })
+    //  } else {
+    //     // if it doesnt have all the keys, get the keys we needs, and then loop back to step 1
+    //     // make a fetch req with the active keys we dont have
+     //
+    //     // determine what keys we dont have
+     //
+    //     let fetchIds = active.filter((a) => {
+    //       return (projectKeys.indexOf(a) < 0)
+    //     })
+    //     // fetch that sub array
+    //     this.props.fetchProjectsById(fetchIds)
+    //  }
+
+
+
+
+
+    let childElements = filter2D(activeProjects, primary, secondary).map((a) => {
       let tags = a.details.tags.map((b) => {
         return <p key={b} className="tag">{b}</p>
       })
@@ -97,11 +136,13 @@ class Main extends Component {
 
 Main.propTypes = {
   fetchActiveProjects: PropTypes.func.isRequired,
-  projects: PropTypes.array.isRequired
+  projects: PropTypes.object.isRequired,
+  active: PropTypes.array.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  projects: state.projects.active,
+  projects: state.projects.projects,
+  active: state.projects.active,
   search: {
     primary: state.projects.primary,
     secondary: state.projects.secondary
