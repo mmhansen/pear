@@ -11,13 +11,18 @@ export function fetchActiveProjects () {
       {
       	activeProjects {
           _id
+          participants {
+            count
+          }
           details {
             title
             description
             tags
+            age
             options {
               lanuage
               timezone
+              max_members
             }
           }
         }

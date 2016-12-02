@@ -1,24 +1,20 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import * as actions from '../actions/project_actions'
-
+import filter2D from './utils/filter2D'
 class Main extends Component {
   componentDidMount () {
     this.props.fetchActiveProjects()
   }
   render () {
-    /*
-     * Primary Search:
-     * age, scripting language
-     * Secondary Search:
-     * age -> oldest to newest, newest to oldest
-     * scripting language -> javascript, ruby
-     */
+
 
     //const subSearch =
-    let { projects } = this.props
+    let { projects, search: { primary, secondary } } = this.props
 
-    let childElements = projects.map((a) => {
+
+    let childElements = filter2D(projects, primary, secondary).map((a) => {
       let tags = a.details.tags.map((b) => {
         return <p key={b} className="tag">{b}</p>
       })
@@ -34,18 +30,23 @@ class Main extends Component {
             </div>
             <div className="row bottom">
               <div className="col-sm-4">
-                <p className="stat">2/4</p>
+                <p className="stat">{a.participants.count}/{a.details.options.max_members}</p>
                 <p className="description">Members</p>
               </div>
               <div className="col-sm-4">
-                <p className="stat">12</p>
+                <p className="stat">{a.details.age}</p>
                 <p className="description">Days Old</p>
+              </div>
+              <div className="col-sm-4">
+                <Link to="/me" className="inline btn btn-default btn-lg">Join!</Link>
               </div>
             </div>
           </div>
         </div>
       )
     })
+
+
 
     let options;
     if (this.props.search.primary == "age") {
@@ -64,7 +65,7 @@ class Main extends Component {
     return (
         <div className="container-fluid main">
           <div className="row">
-            <div className="col-sm-12">
+            <div className="col-sm-10 col-sm-offset-1 ">
               {/* Search form options*/}
 
               <div className="form-group">
@@ -83,13 +84,11 @@ class Main extends Component {
                   { options }
                 </select>
               </div>
-
+              <div className="row">
+                  { childElements }
+              </div>
            </div>
          </div>
-
-          <div className="row">
-              { childElements }
-          </div>
         </div>
     )
   }

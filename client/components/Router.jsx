@@ -4,6 +4,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import Container from './Container'
 import Main from './Main'
 import NewProject from './NewProject'
+import User from './User'
 import Logout from './Logout'
 
 const Routes = () => {
@@ -12,6 +13,7 @@ const Routes = () => {
       <Route path="/" component={Container}>
         <IndexRoute component={Main} />
         <Route path="/new" component={NewProject} />
+        <Route path="/me" component={User} />
         <Route path="/logout" component={Logout} />
       </Route>
     </Router>
