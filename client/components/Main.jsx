@@ -54,6 +54,7 @@ class Main extends Component {
 
 
     let childElements = filter2D(activeProjects, primary, secondary).map((a) => {
+      
       let tags = a.details.tags.map((b) => {
         return <p key={b} className="tag">{b}</p>
       })

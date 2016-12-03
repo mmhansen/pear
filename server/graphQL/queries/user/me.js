@@ -20,15 +20,17 @@ export default {
   description: 'returns user profile of currently logged in user',
   type: UserType,
   async resolve (root, params, options) {
+
     const id = options.user._doc._id
+    let user = await UserModel.findById(id).exec()
     
-    const User = await UserModel.findById(id).exec()
-    const projectOwner = await findProject({ 'participants.owner': new ObjectId(params.id) })
-    const projectMember = await findProject({ 'participants.members': new ObjectId(params.id) })
-    const projectApplicant = await findProject({ 'participants.applicants': new ObjectId(params.id) })
+    return {user};
+    // const projectOwner = await findProject({ 'participants.owner': new ObjectId(params.id) })
+    // const projectMember = await findProject({ 'participants.members': new ObjectId(params.id) })
+    // const projectApplicant = await findProject({ 'participants.applicants': new ObjectId(params.id) })
 
 
-    let me = Object.assign({}, {user: User}, { projects: [...projectOwner, ...projectMember, ...projectApplicant] })
-    return me
+    // let me = Object.assign({}, {user: User}, { projects: [...projectOwner, ...projectMember, ...projectApplicant] })
+    // return me
   }
 }

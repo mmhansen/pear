@@ -43,7 +43,7 @@ const common = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Campfire Stories',
+      title: 'Pear',
       template: './client/index.ejs',
       minify: {
         removeComments: true,

@@ -83,6 +83,15 @@ app.use('/graphql', graphqlHTTP(req => ({
 })));
 
 /*
+ * Invalidate token so that user is logged out
+ */
+app.get('/logout', (req, res) => {
+  req.logOut();
+  console.log(req.user)
+  res.cookie('id_token', "", { maxAge: -1, httpOnly: true });
+  res.redirect('/');
+})
+/*
  * Catch other routes and send back index.html
  */
 app.get('/*', (req, res) => {

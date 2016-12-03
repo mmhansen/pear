@@ -1,7 +1,6 @@
 import axios from 'axios'
-import cookie from "react-cookie"
 import { browserHistory } from "react-router"
-
+import cookie from 'react-cookie'
 /*
  * Import all actions
  */
@@ -24,30 +23,30 @@ export function logout () {
  */
 export function authCheck () {
 
-  const user = cookie.load('user')
-
-  if (user) {
-    return null;
-  } else {
-    return dispatch => {
-      return axios.post('/graphql', {
-        query: `
-        {
-          me {
-            _id
-            username
-          }
-        }`
-      })
-        .then(({ data }) => {
-          cookie.save('user', data.data.me)
-          dispatch({
-            type: types.AUTH_USER
-          })
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+  let query = `
+  {
+    me {
+      _id
+      username
     }
+  }`
+
+  return dispatch => {
+    return axios.post('/graphql', {query})
+      .then(({ data }) => {
+        cookie.save('user', data.data.me, { path: '/'})
+        // if we find an error, abort
+        if (Object.keys(data).indexOf('errors') > 0) {
+          return;
+        }
+        // if we dont find an error, auth me!
+        dispatch({
+          type: types.AUTH_USER
+        })
+
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 }

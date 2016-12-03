@@ -2,12 +2,18 @@ import React, { Component, PropTypes } from 'react'
 import Navbar from './Navbar'
 import { connect } from 'react-redux'
 import { authCheck } from '../actions/authentication_actions'
+import cookie from 'react-cookie'
+
 
 class Container extends Component {
   componentDidMount(){
-    this.props.authCheck()
+
   }
   render () {
+
+    if (!cookie.load('user')) {
+      this.props.authCheck()
+    }
     let { children } = this.props
     return (
       <div>

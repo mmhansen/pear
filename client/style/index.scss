@@ -11,6 +11,7 @@ $bg: #F5F5F5;
 // general
 body {
   font-family: 'Roboto', sans-serif;
+  background: #FAFAFA;
 }
 
 .navigation {
@@ -78,6 +79,21 @@ body {
 
 textarea {
   resize: none;
+}
+
+.user-content,
+.fixed-nav {
+  background: white;
+  border-radius: 6px;
+  margin: 12px;
+  padding: 12px;
+}
+
+.fixed-nav {
+
+}
+.user-content {
+
 }
 
 /* Example Styles for React Tags*/

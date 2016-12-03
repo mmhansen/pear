@@ -15,7 +15,7 @@ function Navbar ({ authenticated }) {
             (authenticated) && <Link className={btnClass} to='/new'>Start a project</Link>
           }
           {
-            (authenticated) ? <Link className={`${btnClass} right`} to='/logout'>Logout</Link> : <a className={`${btnClass} right`} href="/login/github">Login with Github</a>
+            (authenticated) ? <Link className={`${btnClass} right`} to='/me'>Me</Link> : <a className={`${btnClass} right`} href="/login/github">Login with Github</a>
           }
         </div>
       </div>
