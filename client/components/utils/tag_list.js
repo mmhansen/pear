@@ -1,5 +1,60 @@
 export const tagList = [
   "Javascript",
   "Ruby",
-  "Node"
+  "Node",
+  "MongoDB",
+  "Sass",
+  "React",
+  "Redux",
+  "GraphQL"
+]
+
+export const utcTimezones = [
+"-11:00",
+"-10:00",
+"-9:00",
+"-8:00",
+"-7:00",
+"-7:00",
+"-6:00",
+"-5:00",
+"-5:00",
+"-4:00",
+"-3:30",
+"-3:00",
+"-3:00",
+"-1:00",
+ "0:00",
+"+1:00",
+"+2:00",
+"+2:00",
+"+3:00",
+"+3:30",
+"+4:00",
+"+5:00",
+"+5:30",
+"+6:00",
+"+7:00",
+"+8:00",
+"+9:00",
+"+9:30",
+"+10:00",
+"+11:00",
+"+12:00" ]
+
+
+export const languages = [
+"Mandarin",
+"Spanish",
+"English",
+"Hindi",
+"Arabic",
+"Portuguese",
+"Bengali",
+"Russian",
+"Japanese",
+"Punjabi",
+"German",
+"Korean",
+"French"
 ]

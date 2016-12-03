@@ -3,13 +3,13 @@ import * as types from '../actions/types'
 const initialState = {
   title: '',
   description: '',
-  current_tag: '',
   tags: [{
     id: 1,
-    text: "Apples"
+    text: "Javascript"
   }],
-  timezone: '0',
-  communication: 'English'
+  timezone: '',
+  communication: '',
+  error: ''
 }
 
 export default function (state = initialState, action) {
@@ -17,6 +17,10 @@ export default function (state = initialState, action) {
     case types.INPUT_CHANGE:
       let name = action.name
       return { ...state, [name]:action.payload };
+    case types.FORM_ERROR:
+      return { ...state, error: action.payload }
+    case types.CLEAR_FORM:
+      return { ...state, ...initialState}
     /*
      * Tags
      */

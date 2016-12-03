@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { browserHistory } from 'react-router'
 import * as types from './types'
-
+import { tagList } from '../components/utils/tag_list'
 
 
 export function fetchActiveProjects () {
@@ -47,41 +47,67 @@ export function handleChange (event) {
 
 
 
-export function newProject ({ title, description, tags, communication, timezone }) {
+export function newProject ({ title, description, tags, communication = "", timezone = "" }) {
 
-  const mutation = `mutation {
-    new_project(data: {
-      title: "${title}",
-      description: "${description}",
-      tags: ["Javascript"],
-      status: "Active",
-      options: {
-        language: "English",
-        timezone: "0",
-        max_members: 4
-      }
-    }) {
-      _id
-      details {
-        title
-        description
-        tags
-        options {
-          lanuage
-          timezone
+  if (!title || !description || !tags) {
+    return {
+      type: types.FORM_ERROR,
+      payload: 'Title, description, and tags are required fields'
+    }
+  } else {
+    tags = tags.map(a => a.text)
+
+    const variables = {
+      title,
+      description,
+      tags,
+      timezone,
+      communication
+    }
+    const mutation = `mutation ($title: String!, $description: String!, $tags: [String]!, $timezone: String!, $communication: String!) {
+      new_project(data: {
+        title: $title,
+        description: $description,
+        tags: $tags,
+        status: "Active",
+        options: {
+          language: $communication,
+          timezone: $timezone,
+          max_members: 4
+        }
+      }) {
+        _id
+        participants {
+          count
+        }
+        details {
+          title
+          description
+          tags
+          age
+          options {
+            lanuage
+            timezone
+            max_members
+          }
         }
       }
-    }
-  }`
+    }`
 
-  axios.post('/graphql', { query: mutation })
-  .then(({ data }) => {
-    //console.log(data.data)
-    browserHistory.push('/')
-  })
-  .catch(err => {
-    console.log(err)
-  })
+    return dispatch => {
+      return axios.post('/graphql', { query: mutation, variables })
+      .then(({ data }) => {
+        //console.log(data.data)
+        dispatch ({
+          type: types.CLEAR_FORM
+        })
+        browserHistory.push('/')
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    }
+  }
 }
 
 
@@ -134,6 +160,12 @@ export function handleTagDelete(i, tags) {
   }
 }
 export function handleTagAddition(tag, tags) {
+  // if (tagList.indexOf(tag) < 0) {
+  //   return {
+  //     type: 'null'
+  //   }
+  // }
+
   return {
     type: types.ADD_TAG,
     payload: {
@@ -152,5 +184,11 @@ export function handleTagDrag(tag, currPos, newPos, tags) {
   return  {
     type: types.DRAG_TAG,
     payload: tags
+  }
+}
+
+export function emptyForm () {
+  return {
+    type: types.CLEAR_FORM
   }
 }

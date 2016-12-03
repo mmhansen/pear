@@ -26,6 +26,10 @@ body {
   width: 100%;
 }
 
+.select {
+  margin-right: 12px;
+}
+
 .right {
   float: right;
 }
@@ -41,6 +45,7 @@ body {
  * Project card styling for the main page
  */
 .project {
+  overflow: hidden;
   position: relative;
   margin: 12px;
   padding: 12px;
@@ -57,14 +62,22 @@ body {
 .bottom {
   height: 10%;
 }
-.project .title {
+.project .title,
+.preferences .title {
   font-weight: bold;
-  text-transform: uppercase;;
   font-size: 16px;
+}
+
+.project .title {
+  text-transform: uppercase;
 }
 
 .project .stat {
   font-weight: bold;
+}
+
+textarea {
+  resize: none;
 }
 
 /* Example Styles for React Tags*/
@@ -75,21 +88,21 @@ div.ReactTags__tags {
 /* Styles for the input */
 div.ReactTags__tagInput {
     width: 200px;
-    border-radius: 2px;
     display: inline-block;
 }
 div.ReactTags__tagInput input.ReactTags__tagInputField,
 div.ReactTags__tagInput input.ReactTags__tagInputField:focus {
-    height: 31px;
+    //height: 31px;
     margin: 0;
-    font-size: 12px;
+    padding: 6px;
+    font-size: 14px;
     width: 100%;
-    border: 1px solid #eee;
 }
 
 /* Styles for selected tags */
 div.ReactTags__selected span.ReactTags__tag {
-    border: 1px solid #ddd;
+
+    //border: 1px solid #ddd;
     background: #eee;
     font-size: 12px;
     display: inline-block;
