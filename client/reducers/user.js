@@ -4,7 +4,10 @@ const initialState = {
   _id     : '',
   username: '',
   language: '',
-  timezone: ''
+  timezone: '',
+  projects_as_owner: [],
+  projects_as_member: [],
+  projects_as_applicant: [],
 }
 
 export default function (state = initialState, action) {

@@ -21,14 +21,14 @@ class UserSettings extends Component {
     let { timezone, language, handleUserOptions } = this.props
     return (
       <div className="user-content user-options">
-        <p className="title">Options</p>
+        
 
         <label className="control-label select" htmlFor="text">My Primary Spoken Language</label>
         <select name="language" value={language} onChange={(e) => handleUserOptions(e)}>
           <option value=""></option>
           { langugageOptions }
         </select>
-
+        <br />
         <label className="control-label select" htmlFor="text">My Timezone</label>
         <select name="timezone" value={timezone} onChange={(e) => handleUserOptions(e)}>
           <option value=""></option>

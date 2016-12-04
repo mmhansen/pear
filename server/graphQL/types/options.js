@@ -8,7 +8,7 @@ export default new GraphQLObjectType({
   name: 'Options',
   description: 'Project Options',
   fields: {
-    lanuage: {
+    language: {
       type: GraphQLString
     },
     timezone: {
