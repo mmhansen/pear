@@ -10,7 +10,7 @@ const User = new Schema({
     url: { type: String }
   },
   communication: {
-    timezone: { type: String, default: "0" },
+    timezone: { type: String, default: "0:00" },
     language: { type: String, default: "English" }
   }
 })

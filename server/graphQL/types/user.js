@@ -26,7 +26,7 @@ export default new GraphQLObjectType({
         return data.communication.timezone
       }
     },
-    lanuage: {
+    language: {
       type: GraphQLString,
       resolve: (data) => {
         return data.communication.language

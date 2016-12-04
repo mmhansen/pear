@@ -35,3 +35,10 @@ export const CONVERSATION = 'CONVERSATION'
 export const MY_CONVERSATIONS = 'MY_CONVERSATIONS'
 export const MAIL_CHANGE = 'MAIL_CHANGE'
 export const EMPTY_MAIL = 'EMPTY_MAIL'
+
+
+/*
+ * User data types
+ */
+export const USER_OPTION = 'USER_OPTION'
+export const GET_USER = 'GET_USER'
