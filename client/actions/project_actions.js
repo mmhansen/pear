@@ -119,6 +119,9 @@ export function fetchProjectsById (idArray) {
     {
         _id
         participants {
+          owner {
+            _id
+          }
           count
         }
         details {

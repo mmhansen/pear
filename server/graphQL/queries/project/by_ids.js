@@ -17,9 +17,9 @@ export default {
     }
   },
   resolve (root, params, options) {
-    //
+
   return params.ids.map((id) => {
-      return ProjectModel.findById(id).exec()
+      return ProjectModel.findById(id).populate('participants.owner').exec()
     })
 
 

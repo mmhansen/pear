@@ -23,8 +23,8 @@ export default {
 
     const id = options.user._doc._id
     let user = await UserModel.findById(id).exec()
-    
-    return {user};
+
+    return user;
     // const projectOwner = await findProject({ 'participants.owner': new ObjectId(params.id) })
     // const projectMember = await findProject({ 'participants.members': new ObjectId(params.id) })
     // const projectApplicant = await findProject({ 'participants.applicants': new ObjectId(params.id) })

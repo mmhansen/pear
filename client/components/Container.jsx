@@ -7,13 +7,10 @@ import cookie from 'react-cookie'
 
 class Container extends Component {
   componentDidMount(){
-
+    //this.props.authCheck()
   }
   render () {
-
-    if (!cookie.load('user')) {
-      this.props.authCheck()
-    }
+    this.props.authCheck()
     let { children } = this.props
     return (
       <div>

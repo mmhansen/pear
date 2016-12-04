@@ -10,7 +10,11 @@ export default new GraphQLObjectType({
   description: 'Fields for the participants on a project',
   fields: {
     owner: {
-      type: User
+      type: User,
+      resolve: (participants) => {
+        
+        return participants.owner
+      }
     },
     members: {
       type: new GraphQLList(User)

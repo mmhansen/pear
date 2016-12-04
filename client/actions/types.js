@@ -26,3 +26,11 @@ export const DELETE_TAG = 'DELETE_TAG'
 export const DRAG_TAG = 'DRAG_TAG'
 export const FORM_ERROR = 'FORM_ERROR'
 export const CLEAR_FORM = 'CLEAR_FORM'
+
+/*
+ * Mail types
+ */
+export const RECIPIENT = 'RECIPIENT'
+export const CONVERSATION = 'CONVERSATION'
+export const MY_CONVERSATIONS = 'MY_CONVERSATIONS'
+export const MAIL_CHANGE = 'MAIL_CHANGE'

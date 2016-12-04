@@ -2,7 +2,11 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import * as actions from '../actions/project_actions'
+import { changeRecipient } from '../actions/mail_actions'
 import filter2D from './utils/filter2D'
+import guid from './utils/guid'
+import cookie from 'react-cookie'
+
 class Main extends Component {
   componentDidMount () {
     this.props.fetchActiveProjects()
@@ -54,11 +58,12 @@ class Main extends Component {
 
 
     let childElements = filter2D(activeProjects, primary, secondary).map((a) => {
-      
+      const me = cookie.load('user')
       let tags = a.details.tags.map((b) => {
         return <p key={b} className="tag">{b}</p>
       })
       let description = a.details.description.slice(0,150)
+      let mailID = guid()
       return (
         <div className="col-sm-4" key={a._id}>
           <div className="project">
@@ -78,7 +83,7 @@ class Main extends Component {
                 <p className="description">Days Old</p>
               </div>
               <div className="col-sm-4">
-                <Link to="/me" className="inline btn btn-default btn-lg">Join!</Link>
+                { (a.participants.owner._id !== me._id) && <Link className="inline btn btn-default btn-lg" to={`/mail/${mailID}`} name={a.participants.owner._id} onClick={(e) => {this.props.changeRecipient(e.target.name)}}>Join!</Link> }
               </div>
             </div>
           </div>
@@ -150,6 +155,6 @@ const mapStateToProps = (state) => ({
   }
 })
 
+let allActions = Object.assign({}, actions, {changeRecipient})
 
-
-export default connect(mapStateToProps, actions)(Main);
+export default connect(mapStateToProps, allActions)(Main);

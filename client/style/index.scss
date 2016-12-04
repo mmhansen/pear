@@ -92,9 +92,46 @@ textarea {
 .fixed-nav {
 
 }
+.fixed-nav > a {
+  margin: 6px auto;
+}
 .user-content {
 
 }
+
+.mail-room .title {
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.mail-room a {
+  text-decoration: none;
+}
+
+.conversation-digest {
+  border: 2px solid $lapis;
+  padding: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 12px 0;
+}
+
+.conversation .title,
+.conversation .from {
+  font-weight: bold;
+}
+
+.mail {
+  border: 2px solid $lapis;
+  padding: 6px;
+  margin: 12px 0;
+}
+
+
+
+
+
 
 /* Example Styles for React Tags*/
 div.ReactTags__tags {
