@@ -2,8 +2,14 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import { logout } from '../actions/authentication_actions'
 import { connect } from 'react-redux'
+import { fetchProjects } from '../actions/user_actions'
 
 class UserPage extends Component {
+  componentDidMount () {
+    this.props.projectsOwner()
+    this.props.projectsMember()
+    this.props.projectsParticipant()
+  }
   render () {
     let { children } = this.props
     let btnClass = "full-width btn"
@@ -27,4 +33,4 @@ class UserPage extends Component {
   }
 }
 
-export default connect(null, {logout})(UserPage);
+export default connect(null, { logout, ...fetchProjects })(UserPage);

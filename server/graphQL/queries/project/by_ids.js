@@ -9,6 +9,7 @@ import ProjectModel from '../../../models/project'
 export default {
   name: "projects_by_ids",
   description: "fetch projects based on id array",
+  deprecated: true,
   type: new GraphQLList(ProjectType),
   args: {
     ids: {

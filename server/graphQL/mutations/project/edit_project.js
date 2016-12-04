@@ -5,28 +5,30 @@ import {
 } from 'graphql'
 
 import ProjectModel from '../../../models/project'
-import ProjectInputType from '../../types/input_project'
-import ProjectType from '../../types/project'
 
 export default {
   description: 'edit an existing project',
-  type: ProjectType,
+  type: GraphQLID,
   args: {
     _id: {
-      name: '_id',
+      type: new GraphQLNonNull(GraphQLString)
+    },
+    field: {
       type: new GraphQLNonNull(GraphQLString)
     },
     data: {
-      name: 'data',
-      type: new GraphQLNonNull(ProjectInputType)
+      type: new GraphQLNonNull(GraphQLString)
     }
   },
-  resolve (root, params, options, ast) {
-    return ProjectModel
+  async resolve (root, params, options, ast) {
+    const { _id, field, data } = params
+    const updatedProject = await ProjectModel
     .findByIdAndUpdate(
-      params._id,
-      params.data,
+      _id,
+      {$set: { [field]: data }},
       { new: true }
-    ).exec((err, t) =>  console.log(t, err))
+    ).exec()
+
+    return updatedProject._id
   }
 }

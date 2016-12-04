@@ -71,10 +71,11 @@ export function handleUserOptions (event) {
   }
 }
 
-function makeProjectQuery (name) {
-  return `
+
+function fetchGql({ query_name }) {
+  const query = `
   {
-    projects_as_owner {
+    ${query_name} {
       _id
       participants {
         count
@@ -100,29 +101,30 @@ function makeProjectQuery (name) {
       }
     }
   }`
-}
-
-
-export function projectsOwner () {
-  const query = makeProjectQuery('projects_as_owner')
-  return dispatch => {
-    return axios.post('/graphql', {query})
-    .then((res) => {
-      dispatch({
-        type: types.PROJECTS_AS_OWNER,
-        payload: res.data.data.projects_as_owner
+  const type = query_name.toUpperCase()
+  return function () {
+    return dispatch => {
+      return axios.post('/graphql', {query})
+      .then((res) => {
+        dispatch({
+          type: types[type],
+          name: query_name,
+          payload: res.data.data[query_name]
+        })
       })
-    })
-    .catch((res) => {
-      console.log(res)
-    })
+      .catch((res) => {
+        console.log(res)
+      })
+    }
   }
 }
 
-export function projectsApplicant () {
+const projectsOwner = fetchGql({ query_name: 'projects_as_owner' })
+const projectsMember = fetchGql({ query_name: 'projects_as_member' })
+const projectsParticipant = fetchGql({ query_name: 'projects_as_applicant' })
 
-}
-
-export function projectsMember () {
-
+export const fetchProjects = {
+  projectsOwner,
+  projectsMember,
+  projectsParticipant  
 }

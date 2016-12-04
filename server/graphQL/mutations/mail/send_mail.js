@@ -9,7 +9,7 @@ import ConversationType from '../../types/conversation'
 
 export default {
   name: 'send_mail',
-  type: ConversationType,
+  type: IDType,
   args: {
     _id: {
       type: new GraphQLNonNull(IDType)
@@ -17,24 +17,24 @@ export default {
     to: {
       type: new GraphQLNonNull(IDType)
     },
-    from: {
-      type: new GraphQLNonNull(IDType)
-    },
     body: {
       type: new GraphQLNonNull(StringType)
     }
   },
-  resolve (root, params, options) {
-    let { _id, to, from, body } = params
+  async resolve (root, params, options) {
+    const from = options.user._doc._id
+    const { _id, to, body } = params
+    // append the conversation
     let conversation = {
       to,
       from,
       body
     }
-    return MailModel.findByIdAndUpdate(
+    const updatedConversation = await MailModel.findByIdAndUpdate(
       _id,
       {$push: { conversation }},
       { new: true, upsert: true }
     )
+    return updatedConversation._id
   }
 }

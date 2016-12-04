@@ -4,13 +4,12 @@ import {
 } from 'graphql'
 
 import ProjectModel from '../../../models/project'
-import getProjection from '../../get_projection'
+import ProjectType from '../../types/project'
 
 export default {
-  type: new GraphQLList(IDType),
-  async resolve (root, params, options) {
-    let Projects = await ProjectModel.find({ 'details.status': 'Active' }).exec()
+  type: new GraphQLList(ProjectType),
+  resolve (root, params, options) {
+    return ProjectModel.find({ 'status': 'Active' }).exec()
 
-    return Projects.map((a) => a._id)
   }
 }

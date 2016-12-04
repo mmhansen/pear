@@ -9,11 +9,8 @@ import UserType from '../../types/user'
 
 export default {
   name: 'user_options',
-  type: UserType,
+  type: IDType,
   args: {
-    _id: {
-      type: new GraphQLNonNull(IDType)
-    },
     timezone: {
       type: new GraphQLNonNull(StringType)
     },
@@ -21,13 +18,15 @@ export default {
       type: new GraphQLNonNull(StringType)
     }
   },
-  resolve (root, params, options) {
-    let { _id, timezone, language } = params
+async resolve (root, params, options) {
+    const _id =  options.user._doc._id
+    const { timezone, language } = params
 
-    return UserModel.findByIdAndUpdate(
+    const User = await UserModel.findByIdAndUpdate(
       _id,
       {$set: { 'communication.timezone': timezone, 'communication.language': language }},
       { new: true }
     )
+    return User._id
   }
 }

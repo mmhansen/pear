@@ -17,7 +17,7 @@ export default new GraphQLObjectType({
     _id: {
       type: GraphQLID
     },
-    party: {
+    parties: {
       type: new GraphQLList(UserType)
     },
     modified: {

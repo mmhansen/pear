@@ -7,22 +7,19 @@ import mongoose, { Schema } from 'mongoose'
  * This will allow us to expand the complexity of either without collision of names or too much confusion from 1d objects
  */
 const project = {
-  participants: {
-    owner: { type: Schema.Types.ObjectId, ref: 'user' },
-    members: { type: [Schema.Types.ObjectId], ref: 'user' },
-    applicants: { type: [Schema.Types.ObjectId], ref: 'user' }
+  owner: {
+    type : Schema.Types.ObjectId,
+    ref: 'User'
   },
-  details: {
-    title: { type: String },
-    repository: { type: String },
-    description: { type: String },
-    tags: { type: [String] },
-    status: { type: String, enum: ['Active', 'Abandoned'], default: 'Active', required: true },
-    options: {
-      language: { type: String },
-      timezone: { type: String },
-      max_members: { type: Number, default: 4 }
-    }
+  title: { type: String },
+  repository: { type: String },
+  description: { type: String },
+  tags: { type: [String] },
+  status: { type: String, enum: ['Active', 'Abandoned'], default: 'Active', required: true },
+  options: {
+    language: { type: String },
+    timezone: { type: String },
+    max_members: { type: Number, default: 4 }
   }
 }
 
@@ -33,4 +30,4 @@ const project = {
 // })
 
 const projectSchema = new Schema(project, { timestamps: true })
-export default mongoose.model('project', projectSchema)
+export default mongoose.model('Project', projectSchema)

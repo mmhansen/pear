@@ -11,11 +11,15 @@ const initialState = {
 }
 
 export default function (state = initialState, action) {
+  let name = action.name;
   switch (action.type) {
     case types.GET_USER:
       return {...state, ...action.payload }
     case types.USER_OPTION:
-      let name = action.name
+      return { ...state, [name]:action.payload };
+    case types.PROJECTS_AS_OWNER:
+    case types.PROJECTS_AS_MEMBER:
+    case types.PROJECTS_AS_APPLICANT:
       return { ...state, [name]:action.payload };
     default:
       return state;

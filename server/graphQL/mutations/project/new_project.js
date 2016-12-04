@@ -5,13 +5,12 @@ import {
 
 import ProjectModel from '../../../models/project'
 import UserModel from '../../../models/user'
-import ProjectDetailsInputType from '../../types/input_details'
-import ProjectType from '../../types/project'
+import ProjectDetailsInputType from '../../types/inputs/input_details'
 
 
 export default {
   description: 'create a new project',
-  type: ProjectType,
+  type: GraphQLID,
   args: {
     data: {
       name: 'data',
@@ -19,12 +18,18 @@ export default {
     }
   },
   async resolve (root, params, options) {
-    const id = options.user._doc._id
-    const User = await UserModel.findById(id).exec()
-
-    const project = new ProjectModel({'details': params.data, 'participants.owner':User._id})
+    // save the project
+    const project = new ProjectModel(params.data)
     const newProject = await project.save()
+    // add the project id to the user
+    const id = options.user._doc._id
+    UserModel.findByIdAndUpdate(
+      id,
+      {$push: { 'projects_as_owner': newProject._id } },
+      {new: true},
+      (err, user) => {}
+    )
 
-    return newProject
+    return newProject._id
   }
 }

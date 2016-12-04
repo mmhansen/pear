@@ -1,10 +1,14 @@
 import {
   GraphQLObjectType,
+  GraphQLString,
+  GraphQLList,
+  GraphQLInt as IntType,
   GraphQLID
 } from 'graphql'
 
-import Participants from './participants'
-import Details from './details'
+import moment from 'moment'
+import Options from './options'
+import ProjectStatus from './status_enum'
 
 export default new GraphQLObjectType({
   name: 'Project',
@@ -12,12 +16,35 @@ export default new GraphQLObjectType({
     _id: {
       type: GraphQLID
     },
-    participants: {
-      type: Participants
+    owner: {
+      type: GraphQLID
     },
-    details: {
-      type: Details,
-      resolve: (project) => project
+    title: {
+      type: GraphQLString
+    },
+    repository: {
+      type: GraphQLString
+    },
+    description: {
+      type: GraphQLString
+    },
+    tags: {
+      type: new GraphQLList(GraphQLString)
+    },
+    status: {
+      type: ProjectStatus
+    },
+    age: {
+      type: IntType,
+      resolve: (project) => {
+        let age = moment(project.createdAt)
+        let now = moment(new Date())
+
+        return now.diff(age, 'days')
+      }
+    },
+    options: {
+      type: Options
     }
   })
 })

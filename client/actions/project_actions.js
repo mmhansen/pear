@@ -86,7 +86,7 @@ export function newProject ({ title, description, tags, communication = "", time
           tags
           age
           options {
-            lanuage
+            language
             timezone
             max_members
           }
@@ -130,7 +130,7 @@ export function fetchProjectsById (idArray) {
           tags
           age
           options {
-            lanuage
+            language
             timezone
             max_members
           }

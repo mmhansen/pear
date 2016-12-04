@@ -5,7 +5,8 @@ import {
   GraphQLList
 } from 'graphql'
 
-
+import ProjectType from './project'
+import MailType from './conversation'
 
 export default new GraphQLObjectType({
   name: 'User',
@@ -31,6 +32,18 @@ export default new GraphQLObjectType({
       resolve: (data) => {
         return data.communication.language
       }
+    },
+    mail: {
+      type: new GraphQLList(MailType)
+    },
+    projects_as_owner: {
+      type: new GraphQLList(ProjectType)
+    },
+    projects_as_member: {
+      type: new GraphQLList(ProjectType)
+    },
+    projects_as_applicant: {
+      type: new GraphQLList(ProjectType)
     }
   })
 })
