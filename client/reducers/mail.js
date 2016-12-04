@@ -19,6 +19,8 @@ export default function (state=initialState, action) {
       return {...state, my_conversations: action.payload}
     case types.MAIL_CHANGE:
       return {...state, conversation: action.payload}
+    case types.EMPTY_MAIL:
+      return {...initialState }
     default:
       return state;
   }

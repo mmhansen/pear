@@ -121,3 +121,10 @@ export function sendMail({body, to, from, id}) {
   }
 
 }
+
+
+export function emptyOut () {
+  return {
+    type: types.EMPTY_MAIL
+  }
+}

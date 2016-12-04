@@ -12,6 +12,9 @@ class Conversation extends Component {
     let id = this.props.location.pathname.slice(6)
     this.props.getMail(id)
   }
+  componentWillUnmount () {
+    this.props.emptyOut()
+  }
   handleSend () {
     let { conversation, party } = this.props
     let me = cookie.load('user')
