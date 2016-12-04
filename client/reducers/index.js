@@ -10,9 +10,5 @@ import user from './user'
  */
 export default combineReducers({
   authentication,
-  projects,
-  formReducer,
-  form,
-  mail,
   user
 })
