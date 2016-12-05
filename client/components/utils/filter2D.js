@@ -24,9 +24,9 @@ function ageFilter (project, secondary) {
   let field = "age"
   switch (secondary) {
     case "newest":
-      return project.sort((h, g)  =>  h.details[field] - g.details[field])
+      return project.sort((h, g)  =>  h[field] - g[field])
     case "oldest":
-      return project.sort((h, g) =>  g.details[field] - h.details[field])
+      return project.sort((h, g) =>  g[field] - h[field])
   }
 }
 
@@ -41,9 +41,9 @@ function scriptingLanguage (project, secondary) {
     return function (projects) {
       return projects.filter(function (h) {
         let flag = false;
-        for (let i = 0; i < h.details[field].length; i++) {
+        for (let i = 0; i < h[field].length; i++) {
 
-          if (h.details[field][i] == tag) {
+          if (h[field][i] == tag) {
             flag = true;
           }
         }

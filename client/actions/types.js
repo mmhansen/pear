@@ -29,7 +29,9 @@ export const DELETE_TAG = 'DELETE_TAG'
 export const DRAG_TAG = 'DRAG_TAG'
 export const FORM_ERROR = 'FORM_ERROR'
 export const CLEAR_FORM = 'CLEAR_FORM'
-
+//
+export const HANDLE_CHANGE = 'HANDLE_CHANGE'
+export const SEARCH_CHANGE = 'SEARCH_CHANGE'
 /*
  * Mail types
  */
