@@ -1,0 +1,6 @@
+{
+  "name": "MainProjectCard",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./MainProjectCard.jsx"
+}

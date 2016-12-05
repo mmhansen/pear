@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { reducer as formReducer } from 'redux-form'
+//
 import authentication from './authentication'
 import projects from './projects'
 import form from './form'
@@ -10,5 +10,7 @@ import user from './user'
  */
 export default combineReducers({
   authentication,
-  user
+  user,
+  projects,
+  form
 })

@@ -1,15 +1,21 @@
 import * as types from '../actions/types'
 
 const initialState = {
-  title: '',
-  description: '',
-  tags: [{
-    id: 1,
-    text: "Javascript"
-  }],
-  timezone: '',
-  communication: '',
-  error: ''
+  new_project: {
+    title: '',
+    description: '',
+    tags: [{
+      id: 1,
+      text: "Javascript"
+    }],
+    timezone: '',
+    communication: '',
+    error: ''
+  },
+  search: {
+    primary: 'age',
+    secondary: 'newest'
+  }
 }
 
 export default function (state = initialState, action) {

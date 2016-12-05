@@ -5,6 +5,7 @@ const initialState = {
   username: '',
   language: '',
   timezone: '',
+  mail: [],
   projects_as_owner: [],
   projects_as_member: [],
   projects_as_applicant: [],

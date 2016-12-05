@@ -1,5 +1,3 @@
 import logout from './logout'
 
-export default {
-  logout
-}
+export const logOut = logout

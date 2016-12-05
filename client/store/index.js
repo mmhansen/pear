@@ -13,17 +13,6 @@ const store = applyMiddleware(thunk)(createStore)(rootReducer, devtools);
 
 
 /*
- * Check whether a user is logged in or not when the page loads
- * We check the cookies for id_token
- */
-
-
-
-if (false) {
-  store.dispatch({ type: 'AUTH_USER' });
-}
-
-/*
  *
  */
 import React from 'react';

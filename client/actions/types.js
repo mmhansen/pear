@@ -13,7 +13,7 @@ export const PROJECTS_AS_OWNER = 'PROJECTS_AS_OWNER'
 export const PROJECTS_AS_MEMBER = 'PROJECTS_AS_MEMBER'
 export const PROJECTS_AS_APPLICANT = 'PROJECTS_AS_APPLICANT'
 
-
+export const FETCH_PROJECTS = 'FETCH_PROJECTS'
 /*
  * Primary and secondary search params
  */

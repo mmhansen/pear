@@ -1,4 +1,5 @@
 import * as types from '../types'
+import axios from 'axios'
 
 const query = `{
   activeProjects {
@@ -26,7 +27,7 @@ export default function () {
     return axios.post('/graphql', {query})
     .then(({ data }) => {
       dispatch({
-        type: types.ACTIVE,
+        type: types.FETCH_PROJECTS,
         payload: data.data.activeProjects
       })
     })
