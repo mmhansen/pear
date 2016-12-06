@@ -1,14 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
-import { logout } from '../actions/authentication_actions'
 import { connect } from 'react-redux'
-import { fetchProjects } from '../actions/user_actions'
+import { getUser } from '../actions/user_actions'
+import { logOut } from '../actions/authentication_actions'
 
 class UserPage extends Component {
   componentDidMount () {
-    this.props.projectsOwner()
-    this.props.projectsMember()
-    this.props.projectsParticipant()
+    this.props.getUser()
   }
   render () {
     let { children } = this.props
@@ -21,7 +19,7 @@ class UserPage extends Component {
               <Link to="/me" className={btnClass+" btn-primary"}>Projects</Link>
               <Link to="/mail" className={btnClass+" btn-primary"}>Inbox</Link>
               <Link to="/settings" className={btnClass+" btn-primary"}>Settings</Link>
-              <a href="/logout" onClick={() => {this.props.logout()}} className={btnClass+" btn-warning"}>Logout</a>
+              <a href="/logout" onClick={() => {this.props.logOut()}} className={btnClass+" btn-warning"}>Logout</a>
             </div>
           </div>
           <div className="col-sm-10">
@@ -33,4 +31,4 @@ class UserPage extends Component {
   }
 }
 
-export default connect(null, { logout, ...fetchProjects })(UserPage);
+export default connect(null, { getUser, logOut })(UserPage);

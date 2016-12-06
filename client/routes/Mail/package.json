@@ -1,0 +1,6 @@
+{
+  "name": "Mail",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Mail.jsx"
+}

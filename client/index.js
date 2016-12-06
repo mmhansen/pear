@@ -1,13 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom';
-
-// local import
-import Root from './store'
-
+import { Provider } from 'react-redux'
+// locals
+import store from './redux/configureStore'
+import Routes from './routes';
 /*
- * Render the root node as the store composed with the router;
+ * Render the root node
  */
 render (
-  <Root />,
+  <Provider store={store}>
+    <Routes />
+  </Provider>,
   document.getElementById('app')
 )

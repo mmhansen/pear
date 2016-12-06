@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { secondarySearch, primarySearch } from '../../actions/form_actions'
+import { secondarySearch, primarySearch } from '../../redux/modules/form'
 
 function Search ({primary, secondary, secondarySearch, primarySearch }) {
   let options;
