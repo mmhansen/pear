@@ -6,20 +6,39 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import Container from '../components/Container'
 // routes
 import Home from './Home'
-import Mail from './Mail'
 import Profile from './Profile'
-import Projects from './Projects'
+import MailContainer from './Mail'
+import ProjectContainer from './Projects'
 // utility/errors
-import Logout from '../components/Logout'
+import Logout from '../components/utils/Logout'
 import NotFound from './NotFound'
-
-
-const Routes = () => {
+// children
+import Mail from '../components/Mail'
+import Projects from '../components/Projects'
+import NewProject from '../components/NewProject'
+// fetch data wrapper
+import Fetch from '../components/utils/Fetch'
+/*
+ *
+ */
+const Routes = function () {
   return (
     <Router history={browserHistory}>
       <Route path="/" component={Container}>
-        <IndexRoute component={Home} />
-
+        <IndexRoute component={Fetch(Home)} />
+        //
+        <Route path="mail" component={Fetch(MailContainer)}>
+          <Route path=":id" component={Mail} />
+        </Route>
+        //
+        <Route path="/projects" component={Fetch(ProjectContainer)}>
+          <IndexRoute component={Projects} />
+          <Route path="/new" component={NewProject} />
+        </Route>
+        //
+        <Route path="/profile" component={Fetch(Profile)} />
+        <Route path="/logout" component={Logout} />
+        <Route path="*" component={NotFound} />
       </Route>
     </Router>
   )
@@ -27,10 +46,3 @@ const Routes = () => {
 
 
 export default Routes;
-
-
-// <Route path="mail" component={Mail} />
-// <Route path="profile" component={Profile} />
-// <Route path="projects" component={Projects} />
-// <Route path="logout" component={Logout} />
-// <Route path="*" component={NotFound} />

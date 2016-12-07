@@ -28,10 +28,14 @@ db.once('open', () => (
   ))
 
 /*
+ *
+ */
+const publicPath = path.join(__dirname, '../build')
+app.use(express.static(publicPath));
+
+/*
  * Register express middleware
  */
-
-app.use(express.static(path.join(__dirname, '../build')));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

@@ -19,6 +19,7 @@ const common = {
     app: PATHS.app
   },
   output: {
+    publicPath: '/',
     path: PATHS.build,
     filename: '[name].js'
   },

@@ -19,9 +19,11 @@ body {
   padding: 12px;
 }
 
-.navigation > a:first-child {
+.navigation > a:nth-child(3),
+.navigation > a:nth-child(4) {
   margin-right: 12px;
 }
+
 
 .full-width {
   width: 100%;
@@ -128,9 +130,17 @@ textarea {
   margin: 12px 0;
 }
 
+.strong {
+  font-weight: bold;
+  text-decoration: underline;
+}
 
-
-
+.inbox {
+  list-style-type: none;
+  border: 2px solid $lapis;
+  padding: 12px;
+  margin: 12px;
+}
 
 
 /* Example Styles for React Tags*/

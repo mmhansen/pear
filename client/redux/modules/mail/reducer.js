@@ -1,10 +1,18 @@
-import * as types from '../actions/types'
+import * as types from './types'
 
 const initialState = {
-  recipient: "",
-  conversation: "",
-  party: [],
-  modified: "",
-  mail_history: [],
-  my_conversations: []
+  recipient: {
+    id: '',
+    title: ''
+  }
+}
+
+export default function (state = initialState, action) {
+
+  switch (action.type) {
+    case types.RECIPIENT:
+      return {...state, recipient: action.payload}
+    default:
+      return state;
+  }
 }

@@ -45,7 +45,7 @@ export default {
       {$push: {mail: conv._id}},
       { new: true },
       (err, user) => {
-        console.log(err, user)
+        
       }
     )
     UserModel.findByIdAndUpdate(
@@ -53,7 +53,7 @@ export default {
       {$push: {mail: conv._id}},
       { new: true },
       (err, user) => {
-        console.log(err, user)
+
       }
     )
 

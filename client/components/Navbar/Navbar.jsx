@@ -5,17 +5,21 @@ import { Link } from 'react-router';
 function Navbar ({ authenticated }) {
 
   const btnClass = "btn btn-default btn-lg"
-
+  const authButtons = [
+    <Link key="mail" className={`${btnClass} right`} to='/mail'>Mail</Link>,
+    <Link key="projects" className={`${btnClass} right`} to='/projects'>Projects</Link>,
+    <Link key="profile" className={`${btnClass} right`} to='/profile'>Profile</Link>
+  ]
+  const guestButtons = [
+    <a key="login" className={`${btnClass} right`} href="/login/github">Login with Github</a>
+  ]
   return (
     <div className="container-fluid">
       <div className="row">
         <div className="col-sm-12 navigation">
-          <Link className={btnClass} to='/'>Explore  <span className="glyphicon glyphicon-apple" aria-hidden="true"></span></Link>
+          <Link key="explore" className={btnClass} to='/'>Explore  <span className="glyphicon glyphicon-apple" aria-hidden="true"></span></Link>
           {
-            (authenticated) && <Link className={btnClass} to='/new'>Start a project</Link>
-          }
-          {
-            (authenticated) ? <Link className={`${btnClass} right`} to='/me'>Me</Link> : <a className={`${btnClass} right`} href="/login/github">Login with Github</a>
+            (authenticated) ? authButtons : guestButtons
           }
         </div>
       </div>

@@ -9,6 +9,7 @@ const query = `{
     timezone
     language
     mail {
+      _id
       modified
       parties {
         _id

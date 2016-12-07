@@ -1,18 +1,28 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
+// utlity functions
 import filter2D from '../utils/filter2D'
 import guid from '../utils/guid'
+// actions
+import {changeRecipient} from '../../redux/modules/mail'
+/*
+ * This component is the cards displayed on the home page
+ */
+function MainProjectCard ({ projects, primary, secondary, changeRecipient }) {
 
-function MainProjectCard ({ projects, primary, secondary }) {
-
+  function handleChange (e) {
+    e.preventDefault()
+    changeRecipient(e.target.name)
+    let mailID = guid()
+    browserHistory.push(`/mail/${mailID}`)
+  }
   let childElements = filter2D(projects, primary, secondary).map((a) => {
     // make the tags
     let tags = a.tags.map((b) => {
       return <p key={b} className="tag">{b}</p>
     })
     let description = a.description.slice(0,150)
-    let mailID = guid()
     return (
       <div className="col-sm-4" key={a._id}>
         <div className="project">
@@ -32,7 +42,7 @@ function MainProjectCard ({ projects, primary, secondary }) {
               <p className="description">Days Old</p>
             </div>
             <div className="col-sm-4">
-              { <Link className="inline btn btn-default btn-lg" to={`/mail/${mailID}`} name={a.owner._id}>Join!</Link> }
+              <Link className="inline btn btn-default btn-lg" onClick={handleChange} name={`${a.owner},${a.title}`}>Join!</Link>
             </div>
           </div>
         </div>
@@ -60,4 +70,4 @@ const mapStateToProps = (state) => ({
   secondary: state.form.search.secondary
 })
 
-export default connect(mapStateToProps, null)(MainProjectCard)
+export default connect(mapStateToProps, { changeRecipient })(MainProjectCard)

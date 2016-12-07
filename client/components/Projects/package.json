@@ -1,0 +1,6 @@
+{
+  "name": "Projects",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Projects.jsx"
+}

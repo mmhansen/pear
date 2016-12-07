@@ -13,3 +13,6 @@ yarn.lock
 # Webpack bundles
 build
 stats.json
+
+# Things to refactor
+1Components
