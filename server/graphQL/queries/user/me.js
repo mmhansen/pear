@@ -13,15 +13,35 @@ export default {
       .findById(id)
       .populate({
         path: 'projects_as_owner',
-        model: 'Project'
+        model: 'Project',
+        populate: {
+          path: 'members',
+          model: 'User'
+        },
+        populate: {
+          path: 'applicants',
+          model: 'User'
+        }
       })
       .populate({
         path: 'projects_as_member',
-        model: 'Project'
+        model: 'Project',
+        populate: {
+          path: 'owner',
+          model: 'User'
+        },
+        populate: {
+          path: 'members',
+          model: 'User'
+        }
       })
       .populate({
         path: 'projects_as_applicant',
-        model: 'Project'
+        model: 'Project',
+        populate: {
+          path: 'owner',
+          model: 'User'
+        }
       })
       .populate({
         path: 'mail',

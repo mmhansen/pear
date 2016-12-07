@@ -9,7 +9,9 @@ const query = `{
 
 fragment projectInfo on Project {
   _id
-  owner
+  owner {
+    _id
+  }
   tags
   description
   status

@@ -6,11 +6,15 @@ import mongoose, { Schema } from 'mongoose'
  * Second is the details of the project
  * This will allow us to expand the complexity of either without collision of names or too much confusion from 1d objects
  */
+const userType = {
+  type : Schema.Types.ObjectId,
+  ref: 'User'
+}
+
 const project = {
-  owner: {
-    type : Schema.Types.ObjectId,
-    ref: 'User'
-  },
+  owner: userType,
+  members: [userType],
+  applicants: [userType],
   title: { type: String },
   repository: { type: String },
   description: { type: String },

@@ -6,6 +6,7 @@ import {
 
 import MailModel from '../../../models/mail'
 import UserModel from '../../../models/user'
+import ProjectModel from '../../../models/project'
 import ConversationType from '../../types/conversation'
 
 export default {
@@ -13,6 +14,9 @@ export default {
   type: IDType,
   args: {
     _id: {
+      type: new GraphQLNonNull(IDType)
+    },
+    subject: {
       type: new GraphQLNonNull(IDType)
     },
     to: {
@@ -26,7 +30,7 @@ export default {
 
     const from = options.user._doc._id
     // save the conversation
-    let { _id, to, body } = params
+    let { _id, to, body, subject } = params
     const conversation = {
       to,
       from,
@@ -40,23 +44,26 @@ export default {
     const conv = await newConversation.save()
 
     // add the conv id to the sender and recipient
+    // add the project to the sender as applicant
     UserModel.findByIdAndUpdate(
       to,
       {$push: {mail: conv._id}},
       { new: true },
-      (err, user) => {
-        
-      }
+      (err, user) => {}
     )
     UserModel.findByIdAndUpdate(
       from,
-      {$push: {mail: conv._id}},
+      {$push: {mail: conv._id, projects_as_applicant: subject}},
       { new: true },
-      (err, user) => {
-
-      }
+      (err, user) => {}
     )
-
+    // save the sender as an applicant on the project
+    ProjectModel.findByIdAndUpdate(
+      subject,
+      {$push: {applicants: from }},
+      { new: true },
+      (err, user) => {}
+    )
     //
     return conv._id
   }

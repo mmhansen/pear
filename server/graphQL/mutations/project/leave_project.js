@@ -1,0 +1,49 @@
+import {
+  GraphQLNonNull,
+  GraphQLID as IDType
+} from 'graphql'
+
+import UserModel from '../../../models/user'
+import ProjectModel from '../../../models/project'
+
+export default {
+  name: 'leave_project',
+  description: 'Leave the project of which you are currently a member or applicant',
+  type: IDType,
+  args: {
+    projectID: {
+      type: new GraphQLNonNull(IDType)
+    }
+  },
+  async resolve (root, params, options) {
+    const id = options.user._doc._id
+    const { projectID } = params
+    const announceErr = (err) => { if (err) {console.log(err)} }
+    // remove the user from the project
+    await ProjectModel.findByIdAndUpdate(
+      projectID,
+      {
+        $pull: {
+          'members': id,
+          'applicants': id
+        }
+      },
+      {new: true},
+      announceErr
+    )
+    // remove the project from the user
+    await UserModel.findByIdAndUpdate(
+      id,
+      {
+        $pull: {
+          'projects_as_member': projectID,
+          'projects_as_applicant': projectID
+        }
+      },
+      {new: true},
+      announceErr
+    )
+    // return project id
+    return projectID
+  }
+}

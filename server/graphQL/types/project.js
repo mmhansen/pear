@@ -9,6 +9,7 @@ import {
 import moment from 'moment'
 import Options from './options'
 import ProjectStatus from './status_enum'
+import UserType from './user'
 
 export default new GraphQLObjectType({
   name: 'Project',
@@ -17,7 +18,19 @@ export default new GraphQLObjectType({
       type: GraphQLID
     },
     owner: {
-      type: GraphQLID
+      type: UserType
+    },
+    members: {
+      type: new GraphQLList(UserType)
+    },
+    applicants: {
+      type: new GraphQLList(UserType)
+    },
+    count: {
+      type: IntType,
+      resolve: (project) => {
+        return project.members + 1
+      }
     },
     title: {
       type: GraphQLString

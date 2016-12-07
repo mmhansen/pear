@@ -73,7 +73,7 @@ switch(process.env.npm_lifecycle_event) {
       parts.clean(PATHS.build),
       parts.extractBundle({
         name: 'vendor',
-        entries: Object.keys(pkg["client-dependencies"])//['react']
+        entries: ['react']//Object.keys(pkg["client-dependencies"])/
       }),
       parts.extractCSS(PATHS.style),
       //parts.purifyCSS([PATHS.app]),
