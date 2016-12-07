@@ -58,9 +58,10 @@ export default function () {
     return axios.post('/graphql', {query})
       .then((res) => {
         // if we find an error, abort
-        if (Object.keys(res).indexOf('errors') > 0) {
+        if (Object.keys(res.data).indexOf('errors') > 0) {
           return;
         }
+
         // if we dont find an error, auth me!, and stash info in user state
         dispatch({
           type: types.AUTH_USER

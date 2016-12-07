@@ -17,7 +17,9 @@ export default function (state = initialState, action) {
     case types.GET_USER:
       return {...state, ...action.payload }
     case types.USER_OPTION:
-      return { ...state, [name]:action.payload };
+      return {...state, [name]:action.payload };
+    case types.OPTION_CHANGE:
+      return {...state, [name]:action.value}
     default:
       return state;
   }

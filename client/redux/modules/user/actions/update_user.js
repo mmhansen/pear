@@ -21,7 +21,7 @@ export default function ({ language, timezone }) {
   return dispatch => {
     return axios.post('/graphql', {query, variables})
       .then((res) => {
-        browserHistory.push('/me')
+        browserHistory.push('/')
       })
       .catch((res) => {
         console.log(res)
