@@ -4,8 +4,7 @@ import * as types from '../types'
 
 const query = `{
   me {
-    _id
-    username
+    ...userInfo
     timezone
     language
     mail {
@@ -36,7 +35,13 @@ const query = `{
 fragment projectInfo on Project {
   _id
   owner {
-    _id
+    ...userInfo
+  }
+  members {
+    ...userInfo
+  }
+  applicants {
+    ...userInfo
   }
   tags
   description
@@ -48,6 +53,11 @@ fragment projectInfo on Project {
     language
     timezone
   }
+}
+
+fragment userInfo on User {
+  _id
+  username
 }`
 
 

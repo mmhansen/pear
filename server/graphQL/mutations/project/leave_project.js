@@ -13,19 +13,22 @@ export default {
   args: {
     projectID: {
       type: new GraphQLNonNull(IDType)
+    },
+    userID: {
+      type: new GraphQLNonNull(IDType)
     }
   },
   async resolve (root, params, options) {
-    const id = options.user._doc._id
-    const { projectID } = params
+
+    const { projectID, userID } = params
     const announceErr = (err) => { if (err) {console.log(err)} }
     // remove the user from the project
     await ProjectModel.findByIdAndUpdate(
       projectID,
       {
         $pull: {
-          'members': id,
-          'applicants': id
+          'members': userID,
+          'applicants': userID
         }
       },
       {new: true},

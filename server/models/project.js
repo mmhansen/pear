@@ -11,10 +11,18 @@ const userType = {
   ref: 'User'
 }
 
+const messageBoard = new Schema({
+  text: {
+    type: String
+  }
+},
+{timestamps: true})
+
 const project = {
   owner: userType,
   members: [userType],
   applicants: [userType],
+  messages: [messageBoard],
   title: { type: String },
   repository: { type: String },
   description: { type: String },
