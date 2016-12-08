@@ -12,6 +12,7 @@ fragment projectInfo on Project {
   owner {
     _id
   }
+  count
   tags
   description
   status

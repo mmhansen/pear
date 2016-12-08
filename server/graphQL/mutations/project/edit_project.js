@@ -10,22 +10,23 @@ export default {
   description: 'edit an existing project',
   type: GraphQLID,
   args: {
-    _id: {
+    projectID: {
       type: new GraphQLNonNull(GraphQLString)
     },
     field: {
       type: new GraphQLNonNull(GraphQLString)
     },
-    data: {
+    value: {
       type: new GraphQLNonNull(GraphQLString)
     }
   },
   async resolve (root, params, options, ast) {
-    const { _id, field, data } = params
+    const { projectID, field, value } = params
+    
     const updatedProject = await ProjectModel
     .findByIdAndUpdate(
-      _id,
-      {$set: { [field]: data }},
+      projectID,
+      {$set: { [field]: value }},
       { new: true }
     ).exec()
 

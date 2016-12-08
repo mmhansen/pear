@@ -29,7 +29,13 @@ export default new GraphQLObjectType({
     count: {
       type: IntType,
       resolve: (project) => {
-        return project.members + 1
+        return project.members.length + 1
+      }
+    },
+    messages: {
+      type: new GraphQLList(GraphQLString),
+      resolve: (project) => {
+        return project.messages.map((a) => a.text)
       }
     },
     title: {

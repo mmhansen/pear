@@ -18,13 +18,15 @@ export default {
     }
   },
   async resolve (root, params, options) {
+    const userID = options.user._doc._id
     // save the project
+    params.data.owner = userID;
     const project = new ProjectModel(params.data)
     const newProject = await project.save()
     // add the project id to the user
-    const id = options.user._doc._id
+
     UserModel.findByIdAndUpdate(
-      id,
+      userID,
       {$push: { 'projects_as_owner': newProject._id } },
       {new: true},
       (err, user) => {}
