@@ -9,7 +9,13 @@ import ProjectType from '../../types/project'
 export default {
   type: new GraphQLList(ProjectType),
   resolve (root, params, options) {
-    return ProjectModel.find({ 'status': 'Active' }).exec()
+    return ProjectModel
+      .find({ 'status': 'Active' })
+      .populate({
+        path: 'owner',
+        model: 'User'
+      })
+      .exec()
 
   }
 }
