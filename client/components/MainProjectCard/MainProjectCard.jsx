@@ -9,7 +9,7 @@ import {changeRecipient} from '../../redux/modules/mail'
 /*
  * This component is the cards displayed on the home page
  */
-function MainProjectCard ({ projects, primary, secondary, changeRecipient }) {
+function MainProjectCard ({ myID, projects, primary, secondary, changeRecipient }) {
 
   function handleChange (e) {
     e.preventDefault()
@@ -23,6 +23,11 @@ function MainProjectCard ({ projects, primary, secondary, changeRecipient }) {
       return <p key={b} className="tag">{b}</p>
     })
     let description = a.description.slice(0,150)
+    function messageLink () {
+      return   <Link className="inline btn btn-default btn-lg" onClick={handleChange} name={`${a.owner},${a.title}`}>Join!</Link>
+    }
+
+    let match = (a.owner === myID)
     return (
       <div className="col-sm-4" key={a._id}>
         <div className="project">
@@ -34,7 +39,7 @@ function MainProjectCard ({ projects, primary, secondary, changeRecipient }) {
           </div>
           <div className="row bottom">
             <div className="col-sm-4">
-              <p className="stat">{0}/{a.options.max_members}</p>
+              <p className="stat">{a.count}/{a.options.max_members}</p>
               <p className="description">Members</p>
             </div>
             <div className="col-sm-4">
@@ -42,7 +47,7 @@ function MainProjectCard ({ projects, primary, secondary, changeRecipient }) {
               <p className="description">Days Old</p>
             </div>
             <div className="col-sm-4">
-              <Link className="inline btn btn-default btn-lg" onClick={handleChange} name={`${a.owner},${a.title}`}>Join!</Link>
+              { match &&  messageLink() }
             </div>
           </div>
         </div>
@@ -67,7 +72,8 @@ MainProjectCard.propTypes = {
 const mapStateToProps = (state) => ({
   projects: state.projects.projects,
   primary: state.form.search.primary,
-  secondary: state.form.search.secondary
+  secondary: state.form.search.secondary,
+  myID: state.user._id
 })
 
 export default connect(mapStateToProps, { changeRecipient })(MainProjectCard)
