@@ -15,3 +15,5 @@ export const DRAG_TAG = 'DRAG_TAG'
 export const MAIL_CHANGE = 'MAIL_CHANGE'
 // project message
 export const PROJECT_MESSAGE = 'PROJECT_MESSAGE'
+// new project form
+export const NEW_PROJECT = 'NEW_PROJECT'

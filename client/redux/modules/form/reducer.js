@@ -22,6 +22,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
   let search;
+  let project;
   switch (action.type) {
     case types.PRIMARY_SEARCH:
       let secondary = 'newest'
@@ -36,6 +37,17 @@ export default function (state = initialState, action) {
     case types.MAIL_CHANGE:
     case types.PROJECT_MESSAGE:
       return {...state, [action.key]:action.value}
+    case types.NEW_PROJECT:
+      project = { ...state.new_project, [action.key]:action.value }
+      return {...state, new_project: project}
+    // tags
+    case types.ADD_TAG:
+      project = { ...state.new_project, tags: [...state.new_project.tags, action.payload] }
+      return {...state, new_project: project}
+    case types.DRAG_TAG:
+    case types.DELETE_TAG:
+      project = { ...state.new_project, tags: action.payload }
+      return {...state, new_project: project}
     default:
       return state;
   }
@@ -50,11 +62,6 @@ export default function (state = initialState, action) {
 //   return { ...state, error: action.payload }
 // case types.CLEAR_FORM:
 //   return { ...state, ...initialState}
-// /*
-//  * Tags
-//  */
-// case types.ADD_TAG:
-//   return {...state, tags: [...state.tags, action.payload]}
-// case types.DRAG_TAG:
-// case types.DELETE_TAG:
-//   return {...state, tags: action.payload }
+/*
+ * Tags
+ */
