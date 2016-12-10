@@ -6,17 +6,29 @@ import Member from '../Member'
 import Applicant from '../Applicant'
 import ProjectMessage from '../ProjectMessage'
 // actions
-import { postMessage } from '../../redux/modules/projects'
+import { postMessage, kickMember, approveApplicant } from '../../redux/modules/projects'
 import { projectMessageChange } from '../../redux/modules/form'
 // component
 function ProjectOwnerCard ({ myID, projects, postMessage, projectMessageChange, value }) {
   // kick participant
-  function handleKick() {
-    return
+  function handleKick(projectID) {
+    return function(e) {
+      e.preventDefault();
+      kickMember({
+        projectID,
+        userID: e.target.name
+      })
+    }
   }
   // approve participant
-  function handleApprove() {
-    return
+  function handleApprove(projectID) {
+    return function(e) {
+      e.preventDefault();
+      approveApplicant({
+        projectID,
+        userID: e.target.name
+      })
+    }
   }
   // send a new team messaage
   function handleSubmit(e) {
@@ -29,13 +41,15 @@ function ProjectOwnerCard ({ myID, projects, postMessage, projectMessageChange, 
   }
   // presentational elements
   let childElements = projects.map((a) => {
-
+    const handleKickWithProjectID = handleKick(a._id)
+    const approveWithProjectID = handleApprove(a._id)
     // members
-    let memberElements = a.members.map((b) => <Member key={b.username} data={b} handleKick={handleKick} owner={true} /> )
+    let memberElements = a.members.map((b) => <Member key={b.username} data={b} handleKick={handleKickWithProjectID} owner={true} /> )
     // applicants
-    let applicantElements = a.applicants.map((b) => <Applicant key={b.username} data={b} handleKick={handleKick} handleApprove={handleApprove} owner={true} /> )
+    let applicantElements = a.applicants.map((b) => <Applicant key={b.username} data={b} handleKick={handleKickWithProjectID} handleApprove={approveWithProjectID} owner={true} /> )
     // messages
     let messageElements = a.messages.map((b,i) => <ProjectMessage key={i} data={b} />)
+
 
 
     // putting the pieces together

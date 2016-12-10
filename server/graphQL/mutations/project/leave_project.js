@@ -21,7 +21,11 @@ export default {
   async resolve (root, params, options) {
 
     const { projectID, userID } = params
-    const announceErr = (err) => { if (err) {console.log(err)} }
+    const announceErr = (err, doc) => {
+      if (err) {
+        console.log(err)
+      }
+    }
     // remove the user from the project
     await ProjectModel.findByIdAndUpdate(
       projectID,
@@ -36,7 +40,7 @@ export default {
     )
     // remove the project from the user
     await UserModel.findByIdAndUpdate(
-      id,
+      userID,
       {
         $pull: {
           'projects_as_member': projectID,

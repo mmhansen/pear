@@ -5,12 +5,20 @@ import { connect } from 'react-redux'
 
 // component
 function ProjectApplicantCard ({ myID, projects }) {
-  // handle Leave
-  function handleKick() {
-    return
+  // kick participant
+  function handleKick(projectID) {
+    return function(e) {
+      e.preventDefault();
+      kickMember({
+        projectID,
+        userID: e.target.name
+      })
+    }
   }
   // presentational elements
   let childElements = projects.map((a) => {
+
+    const kickWithProjectID = handleKick(a._id)
 
     return (
       <div key={a._id} className="project-card">
@@ -19,7 +27,7 @@ function ProjectApplicantCard ({ myID, projects }) {
         <p>{a.age} days old</p>
         <p>{a.count}/{a.options.max_members} members</p>
         <hr />
-        <button onClick={handleKick}>Leave Project</button>
+        <button onClick={kickWithProjectID} name={myID} >Leave Project</button>
       </div>
     )
   })

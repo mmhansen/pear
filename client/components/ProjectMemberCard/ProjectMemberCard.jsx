@@ -1,19 +1,29 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
+// components
+import Member from '../Member'
+import ProjectMessage from '../ProjectMessage'
 // actions
-
+import { kickMember } from '../../redux/modules/projects'
 
 // component
 function ProjectMemberCard ({ myID, projects }) {
-  // handle Leave
-  function handleKick() {
-    return
+  // kick participant
+  function handleKick(projectID) {
+    return function(e) {
+      e.preventDefault();
+      kickMember({
+        projectID,
+        userID: e.target.name
+      })
+    }
   }
   // presentational elements
   let childElements = projects.map((a) => {
 
+    const kickWithProjectID = handleKick(a._id)
     // members
-    let memberElements = a.members.map((b) => <Member key={b.username} data={b} handleKick={handleKick} /> )
+    let memberElements = a.members.map((b) => <Member key={b.username} data={b} /> )
     // messages
     let messageElements = a.messages.map((b,i) => <ProjectMessage key={i} data={b} />)
 
@@ -28,12 +38,10 @@ function ProjectMemberCard ({ myID, projects }) {
         <hr />
         <h4>Message Board</h4>
         { messageElements }
-        <textarea rows={5} placeholder="send messages about project details to the members of the project" value={""}/>
-        <button className="block-elem" onClick={handleSubmit}>Post message to your team</button>
         <hr />
         <h4>Members</h4>
         { memberElements }
-        <button onClick={handleKick}>Leave Project</button>
+        <button onClick={kickWithProjectID} name={myID}>Leave Project</button>
       </div>
     )
   })
