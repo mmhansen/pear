@@ -5,6 +5,7 @@ export const host = process.env.WEBSITE_HOSTNAME || 'localhost';
 export const databaseName = process.env.DATABASE_NAME || 'pear_dev'
 export const databaseUrl = process.env.DATABASE_URL || `mongodb://localhost/${databaseName}`;
 
+
 export const analytics = {
 
   // https://analytics.google.com/
@@ -15,6 +16,7 @@ export const analytics = {
 };
 
 const hostUrl = process.env.HOST_URL || 'http://localhost:3000/'
+const production = (process.env.NODE_ENV === 'production')
 
 export const auth = {
 
@@ -23,8 +25,8 @@ export const auth = {
   },
 
   github: {
-    id: "1f620d80f2b1ae6a3681",
-    secret: "a31543ff95e007bc980812afc1ccf6979f52ce3d",
+    id: (production) ? "e8de8701458d17f2d2ea": "1f620d80f2b1ae6a3681",
+    secret: (production) ? "555e6cb27d926542e11d6324cbd7ce891c66b812": "a31543ff95e007bc980812afc1ccf6979f52ce3d",
     callback: `${hostUrl}login/github/callback`
   }
 
