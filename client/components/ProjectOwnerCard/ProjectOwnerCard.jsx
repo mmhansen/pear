@@ -55,16 +55,23 @@ function ProjectOwnerCard ({ myID, projects, postMessage, projectMessageChange, 
     // putting the pieces together
     return (
       <div key={a._id} className="project-card">
-        <h4 className="strong">{a.title} by {a.owner.username}</h4>
-        <p>{a.description}</p>
-        <p>{a.age} days old</p>
-        <p>{a.count}/{a.options.max_members} members</p>
-        <Link to={`/projects/${a._id}`}>Edit Project Details</Link>
-        <hr />
-        <h4>Message Board</h4>
-        { messageElements }
-        <textarea rows={5} placeholder="send messages about project details to the members of the project" value={value} onChange={(e) => {projectMessageChange(e.target.value)}} />
-        <button className="block-elem" name={a._id} onClick={handleSubmit}>Post message to your team</button>
+        <div className="row">
+            <div className="col-sm-6">
+              <h4 className="strong">{a.title} by {a.owner.username}</h4>
+              <p>{a.description}</p>
+              <p>{a.age} days old</p>
+              <p>{a.count}/{a.options.max_members} members</p>
+              <Link to={`/projects/${a._id}`}>Edit Project Details</Link>
+            </div>
+            <div className="col-sm-6">
+              <h4>Message Board</h4>
+              { messageElements }
+              <textarea rows={5} placeholder="send messages about project details to the members of the project" value={value} onChange={(e) => {projectMessageChange(e.target.value)}} />
+              <button className="block-elem" name={a._id} onClick={handleSubmit}>Post message to your team</button>
+            </div>
+        </div>
+
+
         <hr />
         <h4>Members</h4>
         { memberElements }

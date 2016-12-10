@@ -1,16 +1,18 @@
 # Pear  
 
+## Check it out  
+[Pear](https://agile-badlands-35699.herokuapp.com/)  
+
 ## Install   
 ```  
 npm i  
-```  
-## Develop
+```   
+## Develop  
 ```
 npm run dev
 ```
 
-
-## Notes
+## Notes    
 ```
 1. You must have mongoDB running for this to work.
 2. Visit localhost:3000 for the application

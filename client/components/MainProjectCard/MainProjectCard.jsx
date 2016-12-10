@@ -9,7 +9,7 @@ import {changeRecipient} from '../../redux/modules/mail'
 /*
  * This component is the cards displayed on the home page
  */
-function MainProjectCard ({ myID, projects, primary, secondary, changeRecipient }) {
+function MainProjectCard ({ myID, projects, primary, secondary, changeRecipient, authenticated }) {
 
   function handleChange (e) {
     e.preventDefault()
@@ -26,9 +26,8 @@ function MainProjectCard ({ myID, projects, primary, secondary, changeRecipient 
     function messageLink () {
       return   <Link className="inline btn btn-default btn-lg" onClick={handleChange} name={`${a.owner._id},${a._id},${a.title}`}>Join!</Link>
     }
-
-
-    let match = (a.owner._id === myID)
+    // should only display join button if you are logged in and it is not your project
+    let match = (authenticated && a.owner._id !== myID)
 
     return (
       <div className="col-sm-4" key={a._id}>
@@ -49,7 +48,7 @@ function MainProjectCard ({ myID, projects, primary, secondary, changeRecipient 
               <p className="description">Days Old</p>
             </div>
             <div className="col-sm-4">
-              { !match &&  messageLink() }
+              { match &&  messageLink() }
             </div>
           </div>
         </div>
@@ -75,7 +74,8 @@ const mapStateToProps = (state) => ({
   projects: state.projects.projects,
   primary: state.form.search.primary,
   secondary: state.form.search.secondary,
-  myID: state.user._id
+  myID: state.user._id,
+  authenticated: state.authentication.authenticated
 })
 
 export default connect(mapStateToProps, { changeRecipient })(MainProjectCard)
