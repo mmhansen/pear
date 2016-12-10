@@ -3,8 +3,9 @@ import * as types from '../types'
 export default function (recipient) {
   let payload = recipient.split(',')
   payload = {
-    id: payload[0],
-    title: payload[1]
+    userID: payload[0],
+    projectID: payload[1],
+    title: payload[2]
   }
   return {
     type: types.RECIPIENT,

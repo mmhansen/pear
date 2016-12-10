@@ -5,7 +5,7 @@ import marked from 'marked'
 import { newMail, continueMail } from '../../redux/modules/mail'
 import { textareaChange } from '../../redux/modules/form'
 
-function NewMail ({ to, myID, myUsername, mail, title, value, newMail, textareaChange, continueMail, params: { id } }) {
+function NewMail ({ to, subject, myID, myUsername, mail, title, value, newMail, textareaChange, continueMail, params: { id } }) {
   const currentMessage = mail.filter((a) => a._id === id )[0]
   // if there is a message history
   let history = [];
@@ -44,7 +44,8 @@ function NewMail ({ to, myID, myUsername, mail, title, value, newMail, textareaC
       newMail({
         _id: id,
         to,
-        body: value
+        body: value,
+        subject
       })
     }
   }
@@ -75,7 +76,8 @@ NewMail.propTypes = {
 const mapStateToProps = (state) => {
   return {
     title: state.mail.recipient.title,
-    to: state.mail.recipient.id,
+    to: state.mail.recipient.userID,
+    subject: state.mail.recipient.projectID,
     myID: state.user._id,
     myUsername: state.user.username,
     value: state.form.mail,

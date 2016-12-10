@@ -14,6 +14,8 @@ export const analytics = {
 
 };
 
+const hostUrl = process.env.HOST_URL || 'http://localhost:3000/'
+
 export const auth = {
 
   jwt: {
@@ -22,7 +24,8 @@ export const auth = {
 
   github: {
     id: "1f620d80f2b1ae6a3681",
-    secret: "a31543ff95e007bc980812afc1ccf6979f52ce3d"
+    secret: "a31543ff95e007bc980812afc1ccf6979f52ce3d",
+    callback: `${hostUrl}login/github/callback`
   }
 
 };

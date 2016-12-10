@@ -15,7 +15,7 @@ passport.deserializeUser(function(obj, done) {
 const github = new GitHubStrategy({
   clientID: config.auth.github.id,
   clientSecret: config.auth.github.secret,
-  callbackURL: "http://localhost:3000/login/github/callback"
+  callbackURL: config.auth.github.callback
 },
 function(accessToken, refreshToken, profile, done) {
   User.findOne({ 'github._id': profile.id }, (err, user) => {

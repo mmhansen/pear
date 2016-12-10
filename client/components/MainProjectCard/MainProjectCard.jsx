@@ -24,7 +24,7 @@ function MainProjectCard ({ myID, projects, primary, secondary, changeRecipient 
     })
     let description = a.description.slice(0,150)
     function messageLink () {
-      return   <Link className="inline btn btn-default btn-lg" onClick={handleChange} name={`${a.owner},${a.title}`}>Join!</Link>
+      return   <Link className="inline btn btn-default btn-lg" onClick={handleChange} name={`${a.owner._id},${a._id},${a.title}`}>Join!</Link>
     }
 
 

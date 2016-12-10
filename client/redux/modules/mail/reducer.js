@@ -2,7 +2,8 @@ import * as types from './types'
 
 const initialState = {
   recipient: {
-    id: '',
+    userID: '',
+    projectID: '',
     title: ''
   }
 }
