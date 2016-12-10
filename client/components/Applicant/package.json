@@ -1,0 +1,6 @@
+{
+  "name": "Applicant",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Applicant.jsx"
+}

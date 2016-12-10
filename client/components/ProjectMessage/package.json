@@ -1,0 +1,6 @@
+{
+  "name": "ProjectMessage",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ProjectMessage.jsx"
+}

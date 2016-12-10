@@ -48,6 +48,8 @@ fragment projectInfo on Project {
   status
   title
   age
+  count
+  messages
   options {
     max_members
     language

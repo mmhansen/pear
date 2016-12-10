@@ -3,25 +3,21 @@ import axios from 'axios'
 
 const query = `{
   activeProjects {
-    ...projectInfo
-  }
-}
-
-fragment projectInfo on Project {
-  _id
-  owner {
     _id
-  }
-  count
-  tags
-  description
-  status
-  title
-  age
-  options {
-    max_members
-    language
-    timezone
+    count
+    tags
+    description
+    status
+    title
+    age
+    options {
+      max_members
+      language
+      timezone
+    }
+    owner {
+      _id
+    }
   }
 }`
 
@@ -29,6 +25,7 @@ export default function () {
   return dispatch => {
     return axios.post('/graphql', {query})
     .then(({ data }) => {
+  
       dispatch({
         type: types.FETCH_PROJECTS,
         payload: data.data.activeProjects

@@ -14,7 +14,9 @@ import Logout from '../components/utils/Logout'
 import NotFound from './NotFound'
 // children
 import Mail from '../components/Mail'
-import Projects from '../components/Projects'
+import ProjectOwnerCard from '../components/ProjectOwnerCard'
+import ProjectMemberCard from '../components/ProjectMemberCard'
+import ProjectApplicantCard from '../components/ProjectApplicantCard'
 import NewProject from '../components/NewProject'
 // fetch data wrapper
 import Fetch from '../components/utils/Fetch'
@@ -32,8 +34,10 @@ const Routes = function () {
         </Route>
         //
         <Route path="/projects" component={Fetch(ProjectContainer)}>
-          <IndexRoute component={Projects} />
-          <Route path="/new" component={NewProject} />
+          <IndexRoute component={ProjectOwnerCard} />
+          <Route path="member" component={ProjectMemberCard} />
+          <Route path="applicant" component={ProjectApplicantCard} />
+          <Route path="new" component={NewProject} />
         </Route>
         //
         <Route path="/profile" component={Fetch(Profile)} />

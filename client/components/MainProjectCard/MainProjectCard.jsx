@@ -27,7 +27,9 @@ function MainProjectCard ({ myID, projects, primary, secondary, changeRecipient 
       return   <Link className="inline btn btn-default btn-lg" onClick={handleChange} name={`${a.owner},${a.title}`}>Join!</Link>
     }
 
-    let match = (a.owner === myID)
+
+    let match = (a.owner._id === myID)
+
     return (
       <div className="col-sm-4" key={a._id}>
         <div className="project">
@@ -47,7 +49,7 @@ function MainProjectCard ({ myID, projects, primary, secondary, changeRecipient 
               <p className="description">Days Old</p>
             </div>
             <div className="col-sm-4">
-              { match &&  messageLink() }
+              { !match &&  messageLink() }
             </div>
           </div>
         </div>
