@@ -6,21 +6,24 @@ function Navbar ({ authenticated }) {
 
   const btnClass = "btn btn-default btn-lg"
   const authButtons = [
-    <Link key="mail" className={`${btnClass} right`} to='/mail'>Mail</Link>,
-    <Link key="projects" className={`${btnClass} right`} to='/projects'>Projects</Link>,
-    <Link key="profile" className={`${btnClass} right`} to='/profile'>Profile</Link>
+    <Link key="mail" className="" to='/mail'>Mail</Link>,
+    <Link key="projects" className="" to='/projects'>Projects</Link>,
+    <Link key="profile" className="" to='/profile'>Profile</Link>
   ]
   const guestButtons = [
-    <a key="login" className={`${btnClass} right`} href="/login/github">Login with Github</a>
+    <a key="login" className="" href="/login/github">Login with Github</a>
   ]
   return (
     <div className="container-fluid">
-      <div className="row">
-        <div className="col-sm-12 navigation">
-          <Link key="explore" className={btnClass} to='/'>Explore  <span className="glyphicon glyphicon-apple" aria-hidden="true"></span></Link>
-          {
-            (authenticated) ? authButtons : guestButtons
-          }
+      <div className="row navigation">
+        <div className="col-sm-4 left-nav">
+          <Link key="explore" className="" to='/'>Explore  <span className="glyphicon glyphicon-apple" aria-hidden="true"></span></Link>
+        </div>
+        <div className="col-sm-4 middle-nav">
+          <Link key="home" className="" to="/">Pear!</Link>
+        </div>
+        <div className="col-sm-4 right-nav">
+          { (authenticated) ? authButtons : guestButtons }
         </div>
       </div>
     </div>

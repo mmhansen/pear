@@ -1,29 +1,102 @@
+// colors
 
-// Color Palette
-$lapis: rgba(36, 123, 160, 1);
-$green: rgba(112, 193, 179, 1);
-$sea-foam: rgba(178, 219, 191, 1);
-$yellow: rgba(243, 255, 189, 1);
-$red: rgba(255, 22, 84, 1);
-$bg: #F5F5F5;
+$color1: rgba(11, 19, 43, 1);
+$color2: rgba(28, 37, 65, 1);
+$color3: rgba(58, 80, 107, 1);
+$color4: rgba(91, 192, 190, 1);
+$color5: rgba(111, 255, 233, 1);
+
+
+$primary-color-dark:   #1976D2;
+$primary-color:        #2196F3;
+$primary-color-light:  #BBDEFB;
+$primary-color-text:   #FFFFFF;
+$accent-color:         #FFC107;
+$primary-text-color:   #212121;
+$secondary-text-color: #757575;
+$divider-color:        #BDBDBD;
+
+$background: #F5F5F5;
 
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 // general
 body {
   font-family: 'Roboto', sans-serif;
-  background: #FAFAFA;
+  color: #353535;
 }
+
+/*
+ * NAVBAR
+ */
 
 .navigation {
-  background: #2095F2;
-  padding: 12px;
+  background: #FFFFFF;
+  position: relative;
+  box-shadow: 0px 4px 10px 0 rgba(22,22,22,0.08);
+  height: 60px;
 }
 
-.navigation > a:nth-child(3),
-.navigation > a:nth-child(4) {
-  margin-right: 12px;
+.nav-section {
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
+.nav-brand {
+  font-family: 'Permanent Marker', cursive;;
+  font-size: 32px;
+  letter-spacing: 3px;
+  > a {
+    color: $primary-color;
+    text-decoration: none;
+  }
+}
+
+.nav-button {
+  box-sizing: border-box;
+  font-size: 24px;
+  > a {
+    text-decoration: none;
+    color: $primary-text-color;
+  }
+  > a:hover {
+    color: $primary-text-color;
+    transition: all 0.15s ease;
+    transform: translateY(3px);
+  }
+}
+
+
+.middle-nav {
+  @extend .nav-section;
+  @extend .nav-brand;
+  justify-content: center;
+}
+
+.left-nav {
+  @extend .nav-section;
+  @extend .nav-button;
+}
+
+.right-nav {
+  @extend .nav-section;
+  @extend .nav-button;
+  justify-content: space-around;
+}
+
+
+/*
+ * Profile
+ */
+
+
+/*
+ * Projects
+ */
+
+/*
+ * General
+ */
 
 .full-width {
   width: 100%;
@@ -44,6 +117,12 @@ body {
   // prevent mobile screens from trimming off content
   padding-bottom: 100px;
 }
+
+.strong {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 /*
  * Project card styling for the main page
  */
@@ -55,7 +134,7 @@ body {
 
   background: white;
   border-radius: 6px;
-  border: 2px solid $bg;
+  border: 2px solid $background;
 
   height: 400px;
 }
@@ -112,7 +191,7 @@ textarea {
 }
 
 .conversation-digest {
-  border: 2px solid $lapis;
+  border: 2px solid ;
   padding: 6px;
   font-size: 16px;
   cursor: pointer;
@@ -125,19 +204,15 @@ textarea {
 }
 
 .mail {
-  border: 2px solid $lapis;
+  border: 2px solid $color4;
   padding: 6px;
   margin: 12px 0;
 }
 
-.strong {
-  font-weight: bold;
-  text-decoration: underline;
-}
 
 .inbox {
   list-style-type: none;
-  border: 2px solid $lapis;
+  border: 2px solid $color4;
   padding: 12px;
   margin: 12px;
 }
@@ -156,12 +231,12 @@ textarea {
 .project-card {
   margin: 12px;
   padding: 12px;
-  background: $sea-foam;
+  background: $primary-color-light;
 }
 
 .project-participant {
   padding: 6px;
-  border: 2px solid $lapis;
+  border: 2px solid $color4;
   button,
   p {
     display: inline-block;
