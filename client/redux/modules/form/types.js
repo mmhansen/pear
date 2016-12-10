@@ -13,3 +13,5 @@ export const DRAG_TAG = 'DRAG_TAG'
  * Mail forms
  */
 export const MAIL_CHANGE = 'MAIL_CHANGE'
+// project message
+export const PROJECT_MESSAGE = 'PROJECT_MESSAGE'

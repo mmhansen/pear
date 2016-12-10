@@ -21,7 +21,7 @@ export default {
   async resolve (root, params, options) {
     const { projectID, text } = params;
     const announceErr = (err) => { if (err) {console.log(err)} }
-    console.log(text)
+    
     ProjectModel.findByIdAndUpdate(
       projectID,
       {

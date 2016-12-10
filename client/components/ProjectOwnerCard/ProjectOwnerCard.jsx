@@ -6,10 +6,10 @@ import Member from '../Member'
 import Applicant from '../Applicant'
 import ProjectMessage from '../ProjectMessage'
 // actions
-
-
+import { postMessage } from '../../redux/modules/projects'
+import { projectMessageChange } from '../../redux/modules/form'
 // component
-function ProjectOwnerCard ({ myID, projects }) {
+function ProjectOwnerCard ({ myID, projects, postMessage, projectMessageChange, value }) {
   // kick participant
   function handleKick() {
     return
@@ -19,8 +19,13 @@ function ProjectOwnerCard ({ myID, projects }) {
     return
   }
   // send a new team messaage
-  function handleSubmit() {
-    return
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    postMessage({
+      message: value,
+      projectID: e.target.name
+    })
   }
   // presentational elements
   let childElements = projects.map((a) => {
@@ -44,8 +49,8 @@ function ProjectOwnerCard ({ myID, projects }) {
         <hr />
         <h4>Message Board</h4>
         { messageElements }
-        <textarea rows={5} placeholder="send messages about project details to the members of the project" value={""}/>
-        <button className="block-elem" onClick={handleSubmit}>Post message to your team</button>
+        <textarea rows={5} placeholder="send messages about project details to the members of the project" value={value} onChange={(e) => {projectMessageChange(e.target.value)}} />
+        <button className="block-elem" name={a._id} onClick={handleSubmit}>Post message to your team</button>
         <hr />
         <h4>Members</h4>
         { memberElements }
@@ -66,7 +71,9 @@ const mapStateToProps = (state) => {
   const projects = state.user.projects_as_owner
   return {
     myID,
-    projects
+    projects,
+    value: state.form.project_message
   }
 }
-export default connect(mapStateToProps, null)(ProjectOwnerCard)
+
+export default connect(mapStateToProps, { postMessage, projectMessageChange })(ProjectOwnerCard)

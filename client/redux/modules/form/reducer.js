@@ -16,6 +16,7 @@ const initialState = {
     primary: 'age',
     secondary: 'newest'
   },
+  project_message: '',
   mail: ''
 }
 
@@ -33,7 +34,8 @@ export default function (state = initialState, action) {
       search = { ...state.search, secondary:action.value }
       return {...state, search}
     case types.MAIL_CHANGE:
-      return {...state, mail:action.value}
+    case types.PROJECT_MESSAGE:
+      return {...state, [action.key]:action.value}
     default:
       return state;
   }

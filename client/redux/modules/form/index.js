@@ -9,3 +9,4 @@ export const dragTag = drag_tag
 export const primarySearch = handle_change('PRIMARY_SEARCH')('primary')
 export const secondarySearch = handle_change('SECONDARY_SEARCH')('secondary')
 export const textareaChange = handle_change('MAIL_CHANGE')('mail')
+export const projectMessageChange = handle_change('PROJECT_MESSAGE')('project_message')
