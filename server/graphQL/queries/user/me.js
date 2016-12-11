@@ -13,8 +13,6 @@ export default {
     const User = UserModel.findById(id)
     /**
      * Populate the User's inbox
-     *
-     * Map the user populated in the from path to the username value
      */
     const inboxPopulate = {
       path: 'inbox.data',

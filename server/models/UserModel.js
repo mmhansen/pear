@@ -7,11 +7,11 @@ const ConversationType = {
   type: String,
   ref: 'Conversation'
 }
+
 const conversation = new Schema ({
   data: ConversationType,
   read: Boolean
 })
-
 
 /*
  * Subtypes for playground
@@ -25,7 +25,6 @@ const project = new Schema({
   data: ProjectType,
   role: String
 })
-
 
 
 /**
