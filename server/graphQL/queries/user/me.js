@@ -1,5 +1,5 @@
 
-import UserModel from '../../../models/user'
+import UserModel from '../../../models/UserModel'
 import UserType from '../../types/user'
 
 
@@ -8,6 +8,11 @@ export default {
   description: 'returns user profile of currently logged in user',
   type: UserType,
   resolve (root, params, options) {
+    // get the ID of the logged in user
+
+    // populate the users inbox
+
+    
     const id = options.user._doc._id
     const participants = [
       {
@@ -25,6 +30,7 @@ export default {
     ]
     return UserModel
       .findById(id)
+
       .populate({
         path: 'projects_as_owner',
         model: 'Project',

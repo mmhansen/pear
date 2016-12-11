@@ -1,7 +1,7 @@
 import passport from 'passport'
 import GitHubStrategy from 'passport-github2'
 // locals
-import User from './models/user'
+import User from './models/UserModel'
 import * as config from './config'
 
 passport.serializeUser(function(user, done) {
