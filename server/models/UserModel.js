@@ -4,7 +4,7 @@ import mongoose, { Schema } from 'mongoose'
  * Subtypes for inbox
  */
 const ConversationType = {
-  type: Schema.Types.ObjectId,
+  type: String,
   ref: 'Conversation'
 }
 const conversation = new Schema ({

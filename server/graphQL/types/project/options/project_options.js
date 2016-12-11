@@ -5,7 +5,7 @@ import {
 } from 'graphql'
 
 export default new ObjectType({
-  name: 'project',
+  name: 'project_options',
   fields: () => ({
     language: {
       type: StringType

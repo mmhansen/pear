@@ -7,7 +7,7 @@ import {
 
 // subtype for messages
 const MessageType = new ObjectType({
-  name: 'message',
+  name: 'party_message',
   fields: () => ({
     text: {
       type: StringType

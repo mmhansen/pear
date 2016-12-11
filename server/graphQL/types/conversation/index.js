@@ -2,7 +2,8 @@ import {
   GraphQLObjectType as ObjectType,
   GraphQLID         as IDType,
   GraphQLBoolean    as BoolType,
-  GraphQLString     as StringType
+  GraphQLString     as StringType,
+  GraphQLList       as ListType
 } from 'graphql'
 
 // subtypes
@@ -13,13 +14,15 @@ export default new ObjectType({
   name: 'conversation',
   fields: () => ({
     _id: {
-      type: IDType
+      type: IDType,
+      resolve: (message) => message.data._id
     },
     read: {
       type: BoolType
     },
     messages: {
-      type: new ListType(MessageType)
+      type: new ListType(MessageType),
+      resolve: (message) => message.data.messages
     }
   })
 })

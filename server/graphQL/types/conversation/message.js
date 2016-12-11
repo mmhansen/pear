@@ -9,7 +9,8 @@ export default new ObjectType({
   name: 'message',
   fields: () => ({
     from: {
-      type: StringType
+      type: StringType,
+      resolve: (message) => message.from.github.username
     },
     age: {
       type: StringType,

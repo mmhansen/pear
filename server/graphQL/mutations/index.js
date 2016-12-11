@@ -1,9 +1,10 @@
-import project from './project'
-import mail from './mail'
-import user from './user'
+
+
+
+import conversation from './conversation'
 
 export default {
-  ...project,
-  ...mail,
-  ...user
+
+  ...conversation
+
 }
