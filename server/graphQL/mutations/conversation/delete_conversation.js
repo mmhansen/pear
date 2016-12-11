@@ -11,8 +11,8 @@ import UserModel from '../../../models/UserModel'
 import ConversationType from '../../types/conversation'
 //
 export default {
-  name: 'read_conversation',
-  type: ConversationType,
+  name: 'delete_conversation',
+  type: IDType,
   args: {
     conversationID: {
       type: new GraphQLNonNull(IDType)
@@ -23,7 +23,7 @@ export default {
     function alertMe (err, doc) {
       if (err)
         console.log(err)
-      //console.log(doc)
+      console.log(doc)
       return doc;
     }
 
@@ -32,29 +32,23 @@ export default {
     const myID = options.user._doc._id
 
     /**
-     * mark conv as read for recipient
+     * remove conversation from user inbox
      */
-    UserModel.findById(to).update(
-      {'inbox.data': conversationID},
+    UserModel.findByIdAndUpdate(
+      myID,
       {
-        $set: {
-          'inbox.$.read': true
+        $pull: {
+          'inbox': {
+            '_id': conversationID
+          }
         }
       },
+      {new:true},
       alertMe
     )
 
 
-    // return the new conversation
-    const upConvWithFrom = await ConversationModel.findById(conversationID).populate({
-      path: 'messages.from',
-      model: 'User'
-    }).exec();
-    const convAsUser = {
-      data: upConvWithFrom,
-      read: true
-    }
-
-    return convAsUser
+    // return the ID of the conversation to remove
+    return conversationID
   }
 }

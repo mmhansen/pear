@@ -57,15 +57,37 @@ export default {
 
 
     /**
-     * mark conv as unread for recipient
+     * TODO
+     * If the user does not have this conversationID in their inbox, they have deleted this conversation
+     * add the conversationID back into his inbox, and mark it as unread
+     *
+     * If the user does have the conversationID, simply mark it as unread
+     *
      */
-    UserModel.findById(to).update(
+    const Recipient = UserModel.findById(to)
+    // make sure the conv is in the user's inbox
+    const conversation = {
+      data: conversationID,
+      read: false
+    }
+    Recipient.update(
+      {
+        $addToSet: {
+          'inbox': conversation
+        }
+      },
+      {new: true},
+      alertMe
+    )
+    // make it unread
+    Recipient.update(
       {'inbox.data': conversationID},
       {
         $set: {
           'inbox.$.read': false
         }
       },
+      {new: true},
       alertMe
     )
 
