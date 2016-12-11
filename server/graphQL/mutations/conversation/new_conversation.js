@@ -74,7 +74,7 @@ export default {
     })
 
     // return this conversation, so that it can update state
-    // fake the read for now
+    // fake the read 
     const convAsUser = {
       data: newConv,
       read: false

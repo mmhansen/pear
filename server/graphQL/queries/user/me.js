@@ -10,25 +10,25 @@ export default {
   async resolve (root, params, options) {
     // get the ID of the logged in user
     const id = options.user._doc._id
-    const User = await UserModel.findById(id).exec()
+    const User = UserModel.findById(id)
     /**
      * Populate the User's inbox
      *
      * Map the user populated in the from path to the username value
      */
     const inboxPopulate = {
-      path: 'data',
+      path: 'inbox.data',
       model: 'Conversation',
       populate: {
-        path: 'from',
+        path: 'messages.from',
         model: 'User'
       }
     }
-    const userWithInbox = await User.populate(inboxPopulate)
+    const userWithInbox = await User.populate(inboxPopulate).exec();
 
-    console.log(userWithInbox);
 
-    return null
+
+    return userWithInbox
     //
     //
     // const participants = [

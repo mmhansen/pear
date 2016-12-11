@@ -1,6 +1,7 @@
 import {
   GraphQLObjectType as ObjectType,
-  GraphQLString     as StringType
+  GraphQLString     as StringType,
+  GraphQLID         as IDType
 } from 'graphql'
 
 
@@ -8,6 +9,9 @@ import {
 export default new ObjectType({
   name: 'message',
   fields: () => ({
+    _id: {
+      type: IDType
+    },
     from: {
       type: StringType,
       resolve: (message) => message.from.github.username
@@ -15,6 +19,7 @@ export default new ObjectType({
     age: {
       type: StringType,
       resolve: (message) => {
+        
         return "10"
       }
     },

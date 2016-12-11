@@ -7,7 +7,7 @@ import {
 export default new ObjectType({
   name: 'preferences',
   fields: () => ({
-    communication: {
+    language: {
       type: StringType
     },
     timezone: {

@@ -43,7 +43,7 @@ const User = new Schema({
     username: { type: String, required: true, unique: true  },
     url: { type: String }
   },
-  communication: {
+  preferences: {
     timezone: { type: String, default: "0:00" },
     language: { type: String, default: "English" }
   },
