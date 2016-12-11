@@ -16,13 +16,13 @@ function Navbar ({ authenticated }) {
   return (
     <div className="container-fluid">
       <div className="row navigation">
-        <div className="col-sm-4 left-nav">
+        <div className="col-xs-4 left-nav">
           <Link key="explore" className="" to='/'>Explore  <span className="glyphicon glyphicon-apple" aria-hidden="true"></span></Link>
         </div>
-        <div className="col-sm-4 middle-nav">
+        <div className="col-xs-4 middle-nav">
           <Link key="home" className="" to="/">Pear!</Link>
         </div>
-        <div className="col-sm-4 right-nav">
+        <div className="col-xs-4 right-nav">
           { (authenticated) ? authButtons : guestButtons }
         </div>
       </div>
