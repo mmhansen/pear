@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 
-import { logout } from '../../redux/modules/authentication'
+import { logout } from '../../redux/modules/authentication/authentication'
 
 class LogoutPage extends React.Component {
   componentDidMount() {
