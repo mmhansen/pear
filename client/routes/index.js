@@ -19,28 +19,28 @@ import ProjectMemberCard from '../components/ProjectMemberCard'
 import ProjectApplicantCard from '../components/ProjectApplicantCard'
 import NewProject from '../components/NewProject'
 // fetch data wrapper
-import Fetch from '../components/utils/Fetch'
+import IntialFetch from '../components/utils/Fetch'
 /*
  *
  */
 const Routes = function () {
   return (
     <Router history={browserHistory}>
-      <Route path="/" component={Container}>
-        <IndexRoute component={Fetch(Home)} />
+      <Route path="/" component={IntialFetch(Container)}>
+        <IndexRoute component={Home} />
         //
-        <Route path="mail" component={Fetch(MailContainer)}>
+        <Route path="mail" component={MailContainer}>
           <Route path=":id" component={Mail} />
         </Route>
         //
-        <Route path="/projects" component={Fetch(ProjectContainer)}>
+        <Route path="/projects" component={ProjectContainer}>
           <IndexRoute component={ProjectOwnerCard} />
           <Route path="member" component={ProjectMemberCard} />
           <Route path="applicant" component={ProjectApplicantCard} />
           <Route path="new" component={NewProject} />
         </Route>
         //
-        <Route path="/profile" component={Fetch(Profile)} />
+        <Route path="/profile" component={Profile} />
         <Route path="/logout" component={Logout} />
         <Route path="*" component={NotFound} />
       </Route>

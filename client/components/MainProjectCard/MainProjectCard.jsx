@@ -71,10 +71,10 @@ MainProjectCard.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  projects: state.projects.projects,
+  projects: state.statics.project_data,
   primary: state.form.search.primary,
   secondary: state.form.search.secondary,
-  myID: state.user._id,
+  myID: state.statics.user_data._id,
   authenticated: state.authentication.authenticated
 })
 

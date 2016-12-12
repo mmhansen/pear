@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { utcTimezones, languages } from '../../components/utils/tag_list'
 // actions
 import { updateUser, handleChange } from '../../redux/modules/user'
-import { logout } from '../../redux/modules/authentication'
+
 /*
  * Display the user options and allow them to be changed
  */
@@ -41,7 +41,7 @@ class Profile extends Component {
               <hr />
               <button onClick={this.handleSave.bind(this)}>Save Changes</button>
             </div>
-            <a href="/logout" onClick={() => {this.props.logout()}} className={"btn btn-warning"}>Logout</a>
+            <a href="/logout" className={"btn btn-warning"}>Logout</a>
 
           </div>
         </div>
@@ -62,4 +62,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { updateUser, handleChange, logout })(Profile)
+export default connect(mapStateToProps, { updateUser, handleChange })(Profile)

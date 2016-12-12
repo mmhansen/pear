@@ -11,9 +11,6 @@ import Search from '../../components/Search'
  */
 
 class Main extends Component {
-  componentDidMount () {
-    this.props.fetchActiveProjects()
-  }
   render () {
     return (
         <div className="container-fluid main">
@@ -33,7 +30,7 @@ class Main extends Component {
 }
 
 Main.propTypes = {
-  fetch_active_projects: PropTypes.func
+  
 }
 
 export default connect(null, { fetchActiveProjects })(Main);
