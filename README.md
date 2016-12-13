@@ -4,7 +4,7 @@
 
 Have you ever wanted to gain experience working with a team? Have you ever wanted to contribute to a real life app that other people will use?
 
-Introducing **Pear**, the new app for individuals like you who seek to connect with the Open Source Community for the very first time. **Pear** aims to be a place to make starting and joining team projects as scary as a baby Red-Panda.
+Introducing **Pear**, a new app for individuals like you who seek to connect with the Open Source Community for the very first time. **Pear** aims to be a place to make starting and joining team projects as scary as a baby Red-Panda (i.e. not very scary at all).
 
 Check it out at [Pear](https://agile-badlands-35699.herokuapp.com/).
 
@@ -46,9 +46,7 @@ npm run dev
 
 ### General
 
-Feel free to dive right in!  Newcomers are welcome :) 
-
-[Open an Issue](https://github.com/mmhansen/pear/issues/new) or submit a new pull request (PR).
+Newcomers welcome! [Open an Issue](https://github.com/mmhansen/pear/issues/new) or submit a pull request (PR).
 
 ### Helpful links
 
