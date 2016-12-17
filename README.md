@@ -63,6 +63,6 @@ Newcomers welcome! [Open an Issue](https://github.com/mmhansen/pear/issues/new) 
 $ git clone https://github.com/YOUR-USERNAME/Spoon-Knife
 ```
 
-## License
+## License  
 
-None
+GNU GPLv3
